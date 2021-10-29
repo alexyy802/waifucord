@@ -72,7 +72,7 @@ Quick Example
 
     import senpai
 
-    class MyClient(senpai.Client):
+    class MyClient(senpai.Bunny):
         async def on_ready(self):
             print('Uwu Logged on as', self.user)
 
