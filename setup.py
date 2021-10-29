@@ -46,25 +46,25 @@ extras_require = {
 }
 
 packages = [
-    'discord',
-    'discord.types',
-    'discord.ui',
-    'discord.webhook',
-    'discord.ext.commands',
-    'discord.ext.tasks',
+    'senpai',
+    'senpai.chan',
+    'senpai.pi',
+    'senpai.webhooker',
+    'senpai.uwu.waifu',
+    'senpai.uwu.owo',
 ]
 
 setup(name='discord.py',
       author='Rapptz',
-      url='https://github.com/Rapptz/discord.py',
+      url='https://github.com/waifucord/waifucord',
       project_urls={
-        "Documentation": "https://discordpy.readthedocs.io/en/latest/",
-        "Issue tracker": "https://github.com/Rapptz/discord.py/issues",
+        "Documentation": "https://discord.readthedocs.io/en/latest/",
+        "Issue tracker": "https://github.com/waifucord/waifucord/issues",
       },
       version=version,
       packages=packages,
       license='MIT',
-      description='A Python wrapper for the Discord API',
+      description='A Anime wrapper for the Discord API',
       long_description=readme,
       long_description_content_type="text/x-rst",
       include_package_data=True,
