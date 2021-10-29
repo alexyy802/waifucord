@@ -13,7 +13,7 @@ __title__ = "senpai"
 __author__ = "waifucord"
 __license__ = "MIT"
 __copyright__ = "Copyright 2021-present waifucord"
-__version__ = "2.0.0a"
+__version__ = "2.5.3"
 
 __path__ = __import__("pkgutil").extend_path(__path__, __name__)
 
