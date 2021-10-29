@@ -1,7 +1,7 @@
-discord.py
+animecord
 ==========
 
-.. image:: https://discord.com/api/guilds/336642139381301249/embed.png
+.. image:: https://discord.com/api/guilds/897666638831308811/embed.png
    :target: https://discord.gg/r3sSKJJ
    :alt: Discord server invite
 .. image:: https://img.shields.io/pypi/v/discord.py.svg
@@ -12,11 +12,6 @@ discord.py
    :alt: PyPI supported Python versions
 
 A modern, easy to use, feature-rich, and async ready API wrapper for Discord written in Python.
-
-The Future of discord.py
---------------------------
-
-Please read the `gist <https://gist.github.com/Rapptz/4a2f62751b9600a31a0d3c78100287f1>`_ for the future of this project. It's been a good one.
 
 Key Features
 -------------
@@ -75,11 +70,11 @@ Quick Example
 
 .. code:: py
 
-    import discord
+    import senpai
 
-    class MyClient(discord.Client):
+    class MyClient(senpai.Client):
         async def on_ready(self):
-            print('Logged on as', self.user)
+            print('Uwu Logged on as', self.user)
 
         async def on_message(self, message):
             # don't respond to ourselves
@@ -97,10 +92,10 @@ Bot Example
 
 .. code:: py
 
-    import discord
-    from discord.ext import commands
+    import senpai
+    from senpai.uwu import commands
 
-    bot = commands.Bot(command_prefix='>')
+    bot = bunny.OwO(command_prefix='>')
 
     @bot.command()
     async def ping(ctx):
@@ -113,6 +108,6 @@ You can find more examples in the examples directory.
 Links
 ------
 
-- `Documentation <https://discordpy.readthedocs.io/en/latest/index.html>`_
-- `Official Discord Server <https://discord.gg/r3sSKJJ>`_
+- `Documentation <https://discord.readthedocs.io/en/latest/index.html>`_
+- `Official Discord Server <https://discord.gg/jBtKDBneJg>`_
 - `Discord API <https://discord.gg/discord-api>`_
