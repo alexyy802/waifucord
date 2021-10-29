@@ -70,11 +70,11 @@ Quick Example
 
 .. code:: py
 
-    import snepai
+    import senpai
 
     class MyClient(senpai.Client):
         async def on_ready(self):
-            print('Logged on as', self.user)
+            print('Uwu Logged on as', self.user)
 
         async def on_message(self, message):
             # don't respond to ourselves
