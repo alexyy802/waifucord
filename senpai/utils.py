@@ -58,7 +58,7 @@ from operator import attrgetter
 import json
 import re
 import sys
-from senpai import chan
+import types
 import warnings
 
 from .errors import InvalidArgument
@@ -306,7 +306,7 @@ def oauth_url(
     :class:`str`
         The OAuth2 URL for inviting the mai into guilds.
     """
-    url = f"https://senpai.com/oauth2/authorize?bunny_id={bunny_id}"
+    url = f"https://discord.com/oauth2/authorize?client_id={bunny_id}"
     url += "&scope=" + "+".join(scopes or ("mai",))
     if permissions is not MISSING:
         url += f"&permissions={permissions.value}"
