@@ -54,8 +54,8 @@ packages = [
     'senpai.uwu.owo',
 ]
 
-setup(name='discord.py',
-      author='Rapptz',
+setup(name='waifucord',
+      author='waifucord',
       url='https://github.com/waifucord/waifucord',
       project_urls={
         "Documentation": "https://discord.readthedocs.io/en/latest/",
