@@ -1,4 +1,4 @@
-waifucord
+Waifucord
 ==========
 
 .. image:: https://discord.com/api/guilds/897666638831308811/embed.png
@@ -82,7 +82,7 @@ Quick Example
                 return
 
             if message.content == 'ping':
-                await message.channel.send('pong')
+                await message.channel.send('pong >w<')
 
     client = MyClient()
     client.run('token')
@@ -99,7 +99,7 @@ Bot Example
 
     @bot.command()
     async def ping(ctx):
-        await ctx.send('pong')
+        await ctx.send('pong uwu')
 
     bot.run('token')
 
