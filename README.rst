@@ -30,27 +30,27 @@ To install the library without full voice support, you can just run the followin
 .. code:: sh
 
     # Linux/macOS
-    python3 -m pip install -U discord.py
+    python3 -m pip install -U waifucord
 
     # Windows
-    py -3 -m pip install -U discord.py
+    py -3 -m pip install -U waifucord
 
 Otherwise to get voice support you should run the following command:
 
 .. code:: sh
 
     # Linux/macOS
-    python3 -m pip install -U "discord.py[voice]"
+    python3 -m pip install -U "waifucord[voice]"
 
     # Windows
-    py -3 -m pip install -U discord.py[voice]
+    py -3 -m pip install -U waifucord[voice]
 
 
 To install the development version, do the following:
 
 .. code:: sh
 
-    $ git clone https://github.com/Rapptz/discord.py
+    $ git clone https://github.com/waifucord/waifucord
     $ cd discord.py
     $ python3 -m pip install -U .[voice]
 
@@ -93,9 +93,9 @@ Bot Example
 .. code:: py
 
     import senpai
-    from senpai.uwu import commands
+    from senpai.uwu import waifu
 
-    bot = bunny.OwO(command_prefix='>')
+    bot = waifu.mai(command_prefix='>')
 
     @bot.command()
     async def ping(ctx):
