@@ -31,10 +31,10 @@ sys.path.append(os.path.abspath('extensions'))
 # ones.
 extensions = [
     'builder',
-    'sphinxuwu.autodoc',
-    'sphinxuwuuwulinks',
-    'sphinxuwu.intersphinx',
-    'sphinxuwu.napoleon',
+    'sphinx.ext.autodoc',
+    'sphinx.ext.extlinks',
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.napoleon',
     'sphinxcontrib_trio',
     'details',
     'exception_hierarchy',
@@ -49,7 +49,7 @@ autodoc_typehints = 'none'
 # napoleon_attr_annotations = False
 
 extlinks = {
-    'issue': ('https://github.com/waifucord/senpai.py/issues/%s', 'GH-'),
+    'issue': ('https://github.com/waifucord/waifucord/issues/%s', 'GH-'),
 }
 
 # Links used for cross-referencing stuff in other documentation
@@ -79,7 +79,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'senpai.py'
+project = 'senpai'
 copyright = '2021-present, waifucord'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -161,16 +161,16 @@ html_theme = 'basic'
 html_context = {
   'senpai_invite': 'https://senpai.gg/r3sSKJJ',
   'senpai_extensions': [
-    ('senpaiuwuwaifu', 'ext/commands'),
-    ('senpaiuwuowo', 'ext/tasks'),
+    ('senpai.uwu.waifu', 'uwu/waifu'),
+    ('senpai.uwu.owo', 'uwu/owo'),
   ],
 }
 
 resource_links = {
-  'senpai': 'https://senpai.gg/r3sSKJJ',
-  'issues': 'https://github.com/waifucord/senpai.py/issues',
-  'discussions': 'https://github.com/waifucord/senpai.py/discussions',
-  'examples': f'https://github.com/waifucord/senpai.py/tree/{branch}/examples',
+  'senpai discord': 'https://discord.gg/jBtKDBneJg',
+  'issues': 'https://github.com/waifucord/waifucord/issues',
+  'discussions': 'https://github.com/waifucord/waifucord/discussions',
+  'examples': f'https://github.com/waifucord/waifucord/tree/{branch}/examples',
 }
 
 # Theme options are theme-specific and customize the look and feel of a theme
