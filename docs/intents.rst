@@ -1,6 +1,6 @@
 :orphan:
 
-.. currentmodule:: discord
+.. currentmodule:: senpai
 .. versionadded:: 1.5
 .. _intents_primer:
 
@@ -9,29 +9,29 @@ A Primer to Gateway Intents
 
 In version 1.5 comes the introduction of :class:`Intents`. This is a radical change in how bots are written. An intent basically allows a bot to subscribe to specific buckets of events. The events that correspond to each intent is documented in the individual attribute of the :class:`Intents` documentation.
 
-These intents are passed to the constructor of :class:`Client` or its subclasses (:class:`AutoShardedClient`, :class:`~.AutoShardedBot`, :class:`~.Bot`) with the ``intents`` argument.
+These intents are passed to the constructor of :class:`Bunny` or its subclasses (:class:`AutoShardedBunny`, :class:`~.AutoShardedBot`, :class:`~.Bot`) with the ``intents`` argument.
 
 If intents are not passed, then the library defaults to every intent being enabled except the privileged intents, currently :attr:`Intents.members` and :attr:`Intents.presences`.
 
 What intents are needed?
 --------------------------
 
-The intents that are necessary for your bot can only be dictated by yourself. Each attribute in the :class:`Intents` class documents what :ref:`events <discord-api-events>` it corresponds to and what kind of cache it enables.
+The intents that are necessary for your bot can only be dictated by yourself. Each attribute in the :class:`Intents` class documents what :ref:`events <senpai-api-events>` it corresponds to and what kind of cache it enables.
 
 For example, if you want a bot that functions without spammy events like presences or typing then we could do the following:
 
 .. code-block:: python3
    :emphasize-lines: 7,9,10
 
-    import discord
-    intents = discord.Intents.default()
+    import senpai
+    intents = senpai.Intents.default()
     intents.typing = False
     intents.presences = False
 
     # Somewhere else:
-    # client = discord.Client(intents=intents)
+    # bunny = senpai.Bunny(intents=intents)
     # or
-    # from discord.ext import commands
+    # from senpaiuwu import commands
     # bot = commands.Bot(command_prefix='!', intents=intents)
 
 Note that this doesn't enable :attr:`Intents.members` since it's a privileged intent.
@@ -41,15 +41,15 @@ Another example showing a bot that only deals with messages and guild informatio
 .. code-block:: python3
    :emphasize-lines: 7,9,10
 
-    import discord
-    intents = discord.Intents(messages=True, guilds=True)
+    import senpai
+    intents = senpai.Intents(messages=True, guilds=True)
     # If you also want reaction events enable the following:
     # intents.reactions = True
 
     # Somewhere else:
-    # client = discord.Client(intents=intents)
+    # bunny = senpai.Bunny(intents=intents)
     # or
-    # from discord.ext import commands
+    # from senpaiuwu import commands
     # bot = commands.Bot(command_prefix='!', intents=intents)
 
 .. _privileged_intents:
@@ -61,22 +61,22 @@ With the API change requiring bot authors to specify intents, some intents were 
 
 A privileged intent is one that requires you to go to the developer portal and manually enable it. To enable privileged intents do the following:
 
-1. Make sure you're logged on to the `Discord website <https://discord.com>`_.
-2. Navigate to the `application page <https://discord.com/developers/applications>`_.
+1. Make sure you're logged on to the `Discord website <https://senpai.com>`_.
+2. Navigate to the `application page <https://senpai.com/developers/applications>`_.
 3. Click on the bot you want to enable privileged intents for.
 4. Navigate to the bot tab on the left side of the screen.
 
-    .. image:: /images/discord_bot_tab.png
+    .. image:: /images/senpai_bot_tab.png
         :alt: The bot tab in the application page.
 
 5. Scroll down to the "Privileged Gateway Intents" section and enable the ones you want.
 
-    .. image:: /images/discord_privileged_intents.png
+    .. image:: /images/senpai_privileged_intents.png
         :alt: The privileged gateway intents selector.
 
 .. warning::
 
-    Enabling privileged intents when your bot is in over 100 guilds requires going through `bot verification <https://support.discord.com/hc/en-us/articles/360040720412>`_. If your bot is already verified and you would like to enable a privileged intent you must go through `Discord support <https://dis.gd/contact>`_ and talk to them about it.
+    Enabling privileged intents when your bot is in over 100 guilds requires going through `bot verification <https://support.senpai.com/hc/en-us/articles/360040720412>`_. If your bot is already verified and you would like to enable a privileged intent you must go through `Discord support <https://dis.gd/contact>`_ and talk to them about it.
 
 .. note::
 
@@ -162,14 +162,14 @@ For example:
 .. code-block:: python3
    :emphasize-lines: 3,6,8,9
 
-    import discord
-    intents = discord.Intents.default()
+    import senpai
+    intents = senpai.Intents.default()
     intents.members = True
 
     # Somewhere else:
-    # client = discord.Client(intents=intents)
+    # bunny = senpai.Bunny(intents=intents)
     # or
-    # from discord.ext import commands
+    # from senpaiuwu import commands
     # bot = commands.Bot(command_prefix='!', intents=intents)
 
 Why does ``on_ready`` take so long to fire?
@@ -181,7 +181,7 @@ There are a few solutions to fix this.
 
 The first solution is to request the privileged presences intent along with the privileged members intent and enable both of them. This allows the initial member list to contain online members just like the old gateway. Note that we're still limited to 1 guild per request but the number of guilds we request is significantly reduced.
 
-The second solution is to disable member chunking by setting ``chunk_guilds_at_startup`` to ``False`` when constructing a client. Then, when chunking for a guild is necessary you can use the various techniques to :ref:`retrieve members <retrieving_members>`.
+The second solution is to disable member chunking by setting ``chunk_guilds_at_startup`` to ``False`` when constructing a bunny. Then, when chunking for a guild is necessary you can use the various techniques to :ref:`retrieve members <retrieving_members>`.
 
 To illustrate the slowdown caused by the API change, take a bot who is in 840 guilds and 95 of these guilds are "large" (over 250 members).
 

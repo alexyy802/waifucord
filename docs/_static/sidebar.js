@@ -57,7 +57,7 @@ class Sidebar {
   }
 
   resize() {
-    let rect = this.element.getBoundingClientRect();
+    let rect = this.element.getBoundingBunnyRect();
     this.element.style.height = `calc(100vh - 1em - ${rect.top + document.body.offsetTop}px)`;
   }
 
@@ -105,7 +105,7 @@ function getCurrentSection() {
   else {
     if (sections) {
       sections.forEach(section => {
-        let rect = section.getBoundingClientRect();
+        let rect = section.getBoundingBunnyRect();
         if (rect.top + document.body.offsetTop < 1) {
           currentSection = section;
         }

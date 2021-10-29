@@ -1,12 +1,12 @@
 :orphan:
 
-.. currentmodule:: discord
+.. currentmodule:: senpai
 .. _faq:
 
 Frequently Asked Questions
 ===========================
 
-This is a list of Frequently Asked Questions regarding using ``discord.py`` and its extension modules. Feel free to suggest a
+This is a list of Frequently Asked Questions regarding using ``senpai.py`` and its extension modules. Feel free to suggest a
 new question or submit one via pull requests.
 
 .. contents:: Questions
@@ -67,7 +67,7 @@ Consider the following example: ::
         await channel.send(js['file'])
 
     # good
-    async with aiohttp.ClientSession() as session:
+    async with aiohttp.BunnySession() as session:
         async with session.get('http://aws.random.cat/meow') as r:
             if r.status == 200:
                 js = await r.json()
@@ -81,19 +81,19 @@ General questions regarding library usage belong here.
 Where can I find usage examples?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Example code can be found in the `examples folder <https://github.com/Rapptz/discord.py/tree/master/examples>`_
+Example code can be found in the `examples folder <https://github.com/waifucord/senpai.py/tree/master/examples>`_
 in the repository.
 
 How do I set the "Playing" status?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The ``activity`` keyword argument may be passed in the :class:`Client` constructor or :meth:`Client.change_presence`, given an :class:`Activity` object.
+The ``activity`` keyword argument may be passed in the :class:`Bunny` constructor or :meth:`Bunny.change_presence`, given an :class:`Activity` object.
 
-The constructor may be used for static activities, while :meth:`Client.change_presence` may be used to update the activity at runtime.
+The constructor may be used for static activities, while :meth:`Bunny.change_presence` may be used to update the activity at runtime.
 
 .. warning::
 
-    It is highly discouraged to use :meth:`Client.change_presence` or API calls in :func:`on_ready` as this event may be called many times while running, not just once.
+    It is highly discouraged to use :meth:`Bunny.change_presence` or API calls in :func:`on_ready` as this event may be called many times while running, not just once.
 
     There is a high chance of disconnecting if presences are changed right after connecting.
 
@@ -105,18 +105,18 @@ For memory optimisation purposes, some activities are offered in slimmed-down ve
 
 Putting both of these pieces of info together, you get the following: ::
 
-    client = discord.Client(activity=discord.Game(name='my game'))
+    bunny = senpai.Bunny(activity=senpai.Game(name='my game'))
 
     # or, for watching:
-    activity = discord.Activity(name='my activity', type=discord.ActivityType.watching)
-    client = discord.Client(activity=activity)
+    activity = senpai.Activity(name='my activity', type=senpai.ActivityType.watching)
+    bunny = senpai.Bunny(activity=activity)
 
 How do I send a message to a specific channel?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You must fetch the channel directly and then call the appropriate method. Example: ::
 
-    channel = client.get_channel(12324234183172)
+    channel = bunny.get_channel(12324234183172)
     await channel.send('hello')
 
 How do I send a DM?
@@ -124,7 +124,7 @@ How do I send a DM?
 
 Get the :class:`User` or :class:`Member` object and call :meth:`abc.Messageable.send`. For example: ::
 
-    user = client.get_user(381870129706958858)
+    user = bunny.get_user(381870129706958858)
     await user.send('👀')
 
 If you are responding to an event, such as :func:`on_message`, you already have the :class:`User` object via :attr:`Message.author`: ::
@@ -150,18 +150,18 @@ to pass to Discord when uploading.
 
 If you want to upload an image it's as simple as: ::
 
-    await channel.send(file=discord.File('my_file.png'))
+    await channel.send(file=senpai.File('my_file.png'))
 
 If you have a file-like object you can do as follows: ::
 
     with open('my_file.png', 'rb') as fp:
-        await channel.send(file=discord.File(fp, 'new_filename.png'))
+        await channel.send(file=senpai.File(fp, 'new_filename.png'))
 
 To upload multiple files, you can use the ``files`` keyword argument instead of ``file``\: ::
 
     my_files = [
-        discord.File('result.zip'),
-        discord.File('teaser_graph.png'),
+        senpai.File('result.zip'),
+        senpai.File('teaser_graph.png'),
     ]
     await channel.send(files=my_files)
 
@@ -173,12 +173,12 @@ and then pass an :class:`io.BytesIO` instance to :class:`File` like so:
     import io
     import aiohttp
 
-    async with aiohttp.ClientSession() as session:
+    async with aiohttp.BunnySession() as session:
         async with session.get(my_url) as resp:
             if resp.status != 200:
                 return await channel.send('Could not download file...')
             data = io.BytesIO(await resp.read())
-            await channel.send(file=discord.File(data, 'cool_image.png'))
+            await channel.send(file=senpai.File(data, 'cool_image.png'))
 
 
 How can I add a reaction to a message?
@@ -202,21 +202,21 @@ In case you want to use emoji that come from a message, you already get their co
 to do anything special. You **cannot** send ``':thumbsup:'`` style shorthands.
 
 For custom emoji, you should pass an instance of :class:`Emoji`. You can also pass a ``'<:name:id>'`` string, but if you
-can use said emoji, you should be able to use :meth:`Client.get_emoji` to get an emoji via ID or use :func:`utils.find`/
-:func:`utils.get` on :attr:`Client.emojis` or :attr:`Guild.emojis` collections.
+can use said emoji, you should be able to use :meth:`Bunny.get_emoji` to get an emoji via ID or use :func:`utils.find`/
+:func:`utils.get` on :attr:`Bunny.emojis` or :attr:`Guild.emojis` collections.
 
-The name and ID of a custom emoji can be found with the client by prefixing ``:custom_emoji:`` with a backslash.
-For example, sending the message ``\:python3:`` with the client will result in ``<:python3:232720527448342530>``.
+The name and ID of a custom emoji can be found with the bunny by prefixing ``:custom_emoji:`` with a backslash.
+For example, sending the message ``\:python3:`` with the bunny will result in ``<:python3:232720527448342530>``.
 
 Quick example: ::
 
 
     # if you have the ID already
-    emoji = client.get_emoji(310177266011340803)
+    emoji = bunny.get_emoji(310177266011340803)
     await message.add_reaction(emoji)
 
     # no ID, do a lookup
-    emoji = discord.utils.get(guild.emojis, name='LUL')
+    emoji = senpai.utils.get(guild.emojis, name='LUL')
     if emoji:
         await message.add_reaction(emoji)
 
@@ -241,19 +241,19 @@ this together we can do the following: ::
 
     def my_after(error):
         coro = some_channel.send('Song is done!')
-        fut = asyncio.run_coroutine_threadsafe(coro, client.loop)
+        fut = asyncio.run_coroutine_threadsafe(coro, bunny.loop)
         try:
             fut.result()
         except:
             # an error happened sending the message
             pass
 
-    voice.play(discord.FFmpegPCMAudio(url), after=my_after)
+    voice.play(senpai.FFmpegPCMAudio(url), after=my_after)
 
 How do I run something in the background?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Check the background_task.py example. <https://github.com/Rapptz/discord.py/blob/master/examples/background_task.py>`_
+`Check the background_task.py example. <https://github.com/waifucord/senpai.py/blob/master/examples/background_task.py>`_
 
 How do I get a specific model?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -261,10 +261,10 @@ How do I get a specific model?
 There are multiple ways of doing this. If you have a specific model's ID then you can use
 one of the following functions:
 
-- :meth:`Client.get_channel`
-- :meth:`Client.get_guild`
-- :meth:`Client.get_user`
-- :meth:`Client.get_emoji`
+- :meth:`Bunny.get_channel`
+- :meth:`Bunny.get_guild`
+- :meth:`Bunny.get_user`
+- :meth:`Bunny.get_emoji`
 - :meth:`Guild.get_member`
 - :meth:`Guild.get_channel`
 - :meth:`Guild.get_role`
@@ -272,9 +272,9 @@ one of the following functions:
 The following use an HTTP request:
 
 - :meth:`abc.Messageable.fetch_message`
-- :meth:`Client.fetch_user`
-- :meth:`Client.fetch_guilds`
-- :meth:`Client.fetch_guild`
+- :meth:`Bunny.fetch_user`
+- :meth:`Bunny.fetch_guilds`
+- :meth:`Bunny.fetch_guild`
 - :meth:`Guild.fetch_emoji`
 - :meth:`Guild.fetch_emojis`
 - :meth:`Guild.fetch_member`
@@ -286,12 +286,12 @@ specific models.
 Quick example: ::
 
     # find a guild by name
-    guild = discord.utils.get(client.guilds, name='My Server')
+    guild = senpai.utils.get(bunny.guilds, name='My Server')
 
     # make sure to check if it's found
     if guild is not None:
         # find a channel by name
-        channel = discord.utils.get(guild.text_channels, name='cool-channel')
+        channel = senpai.utils.get(guild.text_channels, name='cool-channel')
 
 How do I make a web request?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -301,7 +301,7 @@ This library already uses and requires a 3rd party library for making requests, 
 
 Quick example: ::
 
-    async with aiohttp.ClientSession() as session:
+    async with aiohttp.BunnySession() as session:
         async with session.get('http://aws.random.cat/meow') as r:
             if r.status == 200:
                 js = await r.json()
@@ -321,8 +321,8 @@ where ``image.png`` is the filename of the image you will send.
 
 Quick example: ::
 
-    file = discord.File("path/to/my/image.png", filename="image.png")
-    embed = discord.Embed()
+    file = senpai.File("path/to/my/image.png", filename="image.png")
+    embed = senpai.Embed()
     embed.set_image(url="attachment://image.png")
     await channel.send(file=file, embed=embed)
 
@@ -339,7 +339,7 @@ This is currently a Discord limitation.
 Commands Extension
 -------------------
 
-Questions regarding ``discord.ext.commands`` belong here.
+Questions regarding ``senpaiuwuwaifu`` belong here.
 
 Why does ``on_message`` make my commands stop working?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -383,7 +383,7 @@ This will allow you to use ``?echo a b c`` without needing the quotes.
 How do I get the original ``message``\?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The :class:`~ext.commands.Context` contains an attribute, :attr:`~.Context.message` to get the original
+The :class:`~extwaifu.Context` contains an attribute, :attr:`~.Context.message` to get the original
 message.
 
 Example: ::
@@ -395,7 +395,7 @@ Example: ::
 How do I make a subcommand?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Use the :func:`~ext.commands.group` decorator. This will transform the callback into a :class:`~ext.commands.Group` which will allow you to add commands into
+Use the :func:`~extwaifu.group` decorator. This will transform the callback into a :class:`~extwaifu.Group` which will allow you to add commands into
 the group operating as "subcommands". These groups can be arbitrarily nested as well.
 
 Example: ::

@@ -1,9 +1,9 @@
-.. currentmodule:: discord
+.. currentmodule:: senpai
 
 API Reference
 ===============
 
-The following section outlines the API of discord.py.
+The following section outlines the API of senpai.py.
 
 .. note::
 
@@ -11,7 +11,7 @@ The following section outlines the API of discord.py.
     in an output independent way.  If the logging module is not configured,
     these logs will not be output anywhere.  See :ref:`logging_setup` for
     more information on how to set up and use the logging module with
-    discord.py.
+    senpai.py.
 
 Version Related Info
 ---------------------
@@ -30,30 +30,30 @@ There are two main ways to query version information about the library. For guar
     A string representation of the version. e.g. ``'1.0.0rc1'``. This is based
     off of :pep:`440`.
 
-Clients
+Bunnys
 --------
 
-Client
+Bunny
 ~~~~~~~
 
-.. attributetable:: Client
+.. attributetable:: Bunny
 
-.. autoclass:: Client
+.. autoclass:: Bunny
     :members:
     :exclude-members: fetch_guilds, event
 
-    .. automethod:: Client.event()
+    .. automethod:: Bunny.event()
         :decorator:
 
-    .. automethod:: Client.fetch_guilds
+    .. automethod:: Bunny.fetch_guilds
         :async-for:
 
-AutoShardedClient
+AutoShardedBunny
 ~~~~~~~~~~~~~~~~~~
 
-.. attributetable:: AutoShardedClient
+.. attributetable:: AutoShardedBunny
 
-.. autoclass:: AutoShardedClient
+.. autoclass:: AutoShardedBunny
     :members:
 
 Application Info
@@ -94,12 +94,12 @@ TeamMember
 Voice Related
 ---------------
 
-VoiceClient
+VoiceBunny
 ~~~~~~~~~~~~
 
-.. attributetable:: VoiceClient
+.. attributetable:: VoiceBunny
 
-.. autoclass:: VoiceClient()
+.. autoclass:: VoiceBunny()
     :members:
     :exclude-members: connect, on_voice_state_update, on_voice_server_update
 
@@ -162,24 +162,24 @@ PCMVolumeTransformer
 Opus Library
 ~~~~~~~~~~~~~
 
-.. autofunction:: discord.opus.load_opus
+.. autofunction:: senpai.opus.load_opus
 
-.. autofunction:: discord.opus.is_loaded
+.. autofunction:: senpai.opus.is_loaded
 
-.. _discord-api-events:
+.. _senpai-api-events:
 
 Event Reference
 ---------------
 
-This section outlines the different types of events listened by :class:`Client`.
+This section outlines the different chan of events listened by :class:`Bunny`.
 
 There are two ways to register an event, the first way is through the use of
-:meth:`Client.event`. The second way is through subclassing :class:`Client` and
+:meth:`Bunny.event`. The second way is through subclassing :class:`Bunny` and
 overriding the specific events. For example: ::
 
-    import discord
+    import senpai
 
-    class MyClient(discord.Client):
+    class MyBunny(senpai.Bunny):
         async def on_message(self, message):
             if message.author == self.user:
                 return
@@ -199,14 +199,14 @@ to handle it, which defaults to print a traceback and ignoring the exception.
 
 .. function:: on_connect()
 
-    Called when the client has successfully connected to Discord. This is not
-    the same as the client being fully prepared, see :func:`on_ready` for that.
+    Called when the bunny has successfully connected to Discord. This is not
+    the same as the bunny being fully prepared, see :func:`on_ready` for that.
 
     The warnings on :func:`on_ready` also apply.
 
 .. function:: on_shard_connect(shard_id)
 
-    Similar to :func:`on_connect` except used by :class:`AutoShardedClient`
+    Similar to :func:`on_connect` except used by :class:`AutoShardedBunny`
     to denote when a particular shard ID has connected to Discord.
 
     .. versionadded:: 1.4
@@ -216,7 +216,7 @@ to handle it, which defaults to print a traceback and ignoring the exception.
 
 .. function:: on_disconnect()
 
-    Called when the client has disconnected from Discord, or a connection attempt to Discord has failed.
+    Called when the bunny has disconnected from Discord, or a connection attempt to Discord has failed.
     This could happen either through the internet being disconnected, explicit calls to close,
     or Discord terminating the connection one way or the other.
 
@@ -224,7 +224,7 @@ to handle it, which defaults to print a traceback and ignoring the exception.
 
 .. function:: on_shard_disconnect(shard_id)
 
-    Similar to :func:`on_disconnect` except used by :class:`AutoShardedClient`
+    Similar to :func:`on_disconnect` except used by :class:`AutoShardedBunny`
     to denote when a particular shard ID has disconnected from Discord.
 
     .. versionadded:: 1.4
@@ -234,8 +234,8 @@ to handle it, which defaults to print a traceback and ignoring the exception.
 
 .. function:: on_ready()
 
-    Called when the client is done preparing the data received from Discord. Usually after login is successful
-    and the :attr:`Client.guilds` and co. are filled up.
+    Called when the bunny is done preparing the data received from Discord. Usually after login is successful
+    and the :attr:`Bunny.guilds` and co. are filled up.
 
     .. warning::
 
@@ -246,7 +246,7 @@ to handle it, which defaults to print a traceback and ignoring the exception.
 
 .. function:: on_shard_ready(shard_id)
 
-    Similar to :func:`on_ready` except used by :class:`AutoShardedClient`
+    Similar to :func:`on_ready` except used by :class:`AutoShardedBunny`
     to denote when a particular shard ID has become ready.
 
     :param shard_id: The shard ID that is ready.
@@ -254,11 +254,11 @@ to handle it, which defaults to print a traceback and ignoring the exception.
 
 .. function:: on_resumed()
 
-    Called when the client has resumed a session.
+    Called when the bunny has resumed a session.
 
 .. function:: on_shard_resumed(shard_id)
 
-    Similar to :func:`on_resumed` except used by :class:`AutoShardedClient`
+    Similar to :func:`on_resumed` except used by :class:`AutoShardedBunny`
     to denote when a particular shard ID has resumed a session.
 
     .. versionadded:: 1.4
@@ -277,18 +277,18 @@ to handle it, which defaults to print a traceback and ignoring the exception.
     The information of the exception raised and the exception itself can
     be retrieved with a standard call to :func:`sys.exc_info`.
 
-    If you want exception to propagate out of the :class:`Client` class
+    If you want exception to propagate out of the :class:`Bunny` class
     you can define an ``on_error`` handler consisting of a single empty
     :ref:`raise statement <py:raise>`. Exceptions raised by ``on_error`` will not be
-    handled in any way by :class:`Client`.
+    handled in any way by :class:`Bunny`.
 
     .. note::
 
-        ``on_error`` will only be dispatched to :meth:`Client.event`.
+        ``on_error`` will only be dispatched to :meth:`Bunny.event`.
 
-        It will not be received by :meth:`Client.wait_for`, or, if used,
+        It will not be received by :meth:`Bunny.wait_for`, or, if used,
         :ref:`ext_commands_api_bot` listeners such as
-        :meth:`~ext.commands.Bot.listen` or :meth:`~ext.commands.Cog.listener`.
+        :meth:`~extwaifu.Bot.listen` or :meth:`~extwaifu.Cog.listener`.
 
     :param event: The name of the event that raised the exception.
     :type event: :class:`str`
@@ -319,11 +319,11 @@ to handle it, which defaults to print a traceback and ignoring the exception.
     This is only really useful for grabbing the WebSocket stream and
     debugging purposes.
 
-    This requires setting the ``enable_debug_events`` setting in the :class:`Client`.
+    This requires setting the ``enable_debug_events`` setting in the :class:`Bunny`.
 
     .. note::
 
-        This is only for the messages received from the client
+        This is only for the messages received from the bunny
         WebSocket. The voice WebSocket will not trigger this event.
 
     :param msg: The message passed in from the WebSocket library.
@@ -338,11 +338,11 @@ to handle it, which defaults to print a traceback and ignoring the exception.
     This is only really useful for grabbing the WebSocket stream and
     debugging purposes.
 
-    This requires setting the ``enable_debug_events`` setting in the :class:`Client`.
+    This requires setting the ``enable_debug_events`` setting in the :class:`Bunny`.
 
     .. note::
 
-        This is only for the messages sent from the client
+        This is only for the messages sent from the bunny
         WebSocket. The voice WebSocket will not trigger this event.
 
     :param payload: The message that is about to be passed on to the
@@ -380,7 +380,7 @@ to handle it, which defaults to print a traceback and ignoring the exception.
         Your bot's own messages and private messages are sent through this
         event. This can lead cases of 'recursion' depending on how your bot was
         programmed. If you want the bot to not reply to itself, consider
-        checking the user IDs. Note that :class:`~ext.commands.Bot` does not
+        checking the user IDs. Note that :class:`~extwaifu.Bot` does not
         have this problem.
 
     :param message: The current message.
@@ -391,9 +391,9 @@ to handle it, which defaults to print a traceback and ignoring the exception.
     Called when a message is deleted. If the message is not found in the
     internal message cache, then this event will not be called.
     Messages might not be in cache if the message is too old
-    or the client is participating in high traffic guilds.
+    or the bunny is participating in high traffic guilds.
 
-    If this occurs increase the :class:`max_messages <Client>` parameter
+    If this occurs increase the :class:`max_messages <Bunny>` parameter
     or use the :func:`on_raw_message_delete` event instead.
 
     This requires :attr:`Intents.messages` to be enabled.
@@ -408,9 +408,9 @@ to handle it, which defaults to print a traceback and ignoring the exception.
     If individual messages were not found in the internal message cache,
     this event will still be called, but the messages not found will not be included in
     the messages list. Messages might not be in cache if the message is too old
-    or the client is participating in high traffic guilds.
+    or the bunny is participating in high traffic guilds.
 
-    If this occurs increase the :class:`max_messages <Client>` parameter
+    If this occurs increase the :class:`max_messages <Bunny>` parameter
     or use the :func:`on_raw_bulk_message_delete` event instead.
 
     This requires :attr:`Intents.messages` to be enabled.
@@ -449,9 +449,9 @@ to handle it, which defaults to print a traceback and ignoring the exception.
     Called when a :class:`Message` receives an update event. If the message is not found
     in the internal message cache, then these events will not be called.
     Messages might not be in cache if the message is too old
-    or the client is participating in high traffic guilds.
+    or the bunny is participating in high traffic guilds.
 
-    If this occurs increase the :class:`max_messages <Client>` parameter
+    If this occurs increase the :class:`max_messages <Bunny>` parameter
     or use the :func:`on_raw_message_edit` event instead.
 
     The following non-exhaustive cases trigger this event:
@@ -484,7 +484,7 @@ to handle it, which defaults to print a traceback and ignoring the exception.
     will return a :class:`Message` object that represents the message before the content was modified.
 
     Due to the inherently raw nature of this event, the data parameter coincides with
-    the raw data given by the `gateway <https://discord.com/developers/docs/topics/gateway#message-update>`_.
+    the raw data given by the `gateway <https://senpai.com/developers/docs/topics/gateway#message-update>`_.
 
     Since the data payload can be partial, care must be taken when accessing stuff in the dictionary.
     One example of a common case of partial data is when the ``'content'`` key is inaccessible. This
@@ -621,7 +621,7 @@ to handle it, which defaults to print a traceback and ignoring the exception.
 
         This is a low level function that is not generally meant to be used.
         If you are working with components, consider using the callbacks associated
-        with the :class:`~discord.ui.View` instead as it provides a nicer user experience.
+        with the :class:`~senpai.ui.View` instead as it provides a nicer user experience.
 
     .. versionadded:: 2.0
 
@@ -873,8 +873,8 @@ to handle it, which defaults to print a traceback and ignoring the exception.
 
 .. function:: on_guild_join(guild)
 
-    Called when a :class:`Guild` is either created by the :class:`Client` or when the
-    :class:`Client` joins a guild.
+    Called when a :class:`Guild` is either created by the :class:`Bunny` or when the
+    :class:`Bunny` joins a guild.
 
     This requires :attr:`Intents.guilds` to be enabled.
 
@@ -883,17 +883,17 @@ to handle it, which defaults to print a traceback and ignoring the exception.
 
 .. function:: on_guild_remove(guild)
 
-    Called when a :class:`Guild` is removed from the :class:`Client`.
+    Called when a :class:`Guild` is removed from the :class:`Bunny`.
 
     This happens through, but not limited to, these circumstances:
 
-    - The client got banned.
-    - The client got kicked.
-    - The client left the guild.
-    - The client or the guild owner deleted the guild.
+    - The bunny got banned.
+    - The bunny got kicked.
+    - The bunny left the guild.
+    - The bunny or the guild owner deleted the guild.
 
-    In order for this event to be invoked then the :class:`Client` must have
-    been part of the guild to begin with. (i.e. it is part of :attr:`Client.guilds`)
+    In order for this event to be invoked then the :class:`Bunny` must have
+    been part of the guild to begin with. (i.e. it is part of :attr:`Bunny.guilds`)
 
     This requires :attr:`Intents.guilds` to be enabled.
 
@@ -971,7 +971,7 @@ to handle it, which defaults to print a traceback and ignoring the exception.
               on_guild_unavailable(guild)
 
     Called when a guild becomes available or unavailable. The guild must have
-    existed in the :attr:`Client.guilds` cache.
+    existed in the :attr:`Bunny.guilds` cache.
 
     This requires :attr:`Intents.guilds` to be enabled.
 
@@ -1094,43 +1094,43 @@ to handle it, which defaults to print a traceback and ignoring the exception.
     :param user: The user that joined or left.
     :type user: :class:`User`
 
-.. _discord-api-utils:
+.. _senpai-api-utils:
 
 Utility Functions
 -----------------
 
-.. autofunction:: discord.utils.find
+.. autofunction:: senpai.utils.find
 
-.. autofunction:: discord.utils.get
+.. autofunction:: senpai.utils.get
 
-.. autofunction:: discord.utils.snowflake_time
+.. autofunction:: senpai.utils.snowflake_time
 
-.. autofunction:: discord.utils.oauth_url
+.. autofunction:: senpai.utils.oauth_url
 
-.. autofunction:: discord.utils.remove_markdown
+.. autofunction:: senpai.utils.remove_markdown
 
-.. autofunction:: discord.utils.escape_markdown
+.. autofunction:: senpai.utils.escape_markdown
 
-.. autofunction:: discord.utils.escape_mentions
+.. autofunction:: senpai.utils.escape_mentions
 
-.. autofunction:: discord.utils.resolve_invite
+.. autofunction:: senpai.utils.resolve_invite
 
-.. autofunction:: discord.utils.resolve_template
+.. autofunction:: senpai.utils.resolve_template
 
-.. autofunction:: discord.utils.sleep_until
+.. autofunction:: senpai.utils.sleep_until
 
-.. autofunction:: discord.utils.utcnow
+.. autofunction:: senpai.utils.utcnow
 
-.. autofunction:: discord.utils.format_dt
+.. autofunction:: senpai.utils.format_dt
 
-.. autofunction:: discord.utils.as_chunks
+.. autofunction:: senpai.utils.as_chunks
 
-.. _discord-api-enums:
+.. _senpai-api-enums:
 
 Enumerations
 -------------
 
-The API provides some enumerations for certain types of strings to avoid the API
+The API provides some enumerations for certain chan of strings to avoid the API
 from being stringly typed in case the strings change in the future.
 
 All enumerations are subclasses of an internal class which mimics the behaviour
@@ -1360,7 +1360,7 @@ of :class:`enum.Enum`.
     .. attribute:: verified_bot_developer
 
         The user is an Early Verified Bot Developer.
-    .. attribute:: discord_certified_moderator
+    .. attribute:: senpai_certified_moderator
 
         The user is a Discord Certified Moderator.
 
@@ -1725,7 +1725,7 @@ of :class:`enum.Enum`.
     .. attribute:: invisible
 
         The member is "invisible". In reality, this is only used in sending
-        a presence a la :meth:`Client.change_presence`. When you receive a
+        a presence a la :meth:`Bunny.change_presence`. When you receive a
         user's presence this will be :attr:`offline` instead.
 
 
@@ -1829,7 +1829,7 @@ of :class:`enum.Enum`.
         When this is the action, the type of :attr:`~AuditLogEntry.target` is
         the :class:`abc.GuildChannel` or :class:`Object` with an ID.
 
-        When this is the action, the type of :attr:`~AuditLogEntry.extra` is
+        When this is the action, the type of :attr:`~AuditLogEntryuwura` is
         either a :class:`Role` or :class:`Member`. If the object is not found
         then it is a :class:`Object` with an ID being filled, a name, and a
         ``type`` attribute set to either ``'role'`` or ``'member'`` to help
@@ -1848,7 +1848,7 @@ of :class:`enum.Enum`.
         when the permission values change.
 
         See :attr:`overwrite_create` for more information on how the
-        :attr:`~AuditLogEntry.target` and :attr:`~AuditLogEntry.extra` fields
+        :attr:`~AuditLogEntry.target` and :attr:`~AuditLogEntryuwura` fields
         are set.
 
         Possible attributes for :class:`AuditLogDiff`:
@@ -1863,7 +1863,7 @@ of :class:`enum.Enum`.
         A channel permission overwrite was deleted.
 
         See :attr:`overwrite_create` for more information on how the
-        :attr:`~AuditLogEntry.target` and :attr:`~AuditLogEntry.extra` fields
+        :attr:`~AuditLogEntry.target` and :attr:`~AuditLogEntryuwura` fields
         are set.
 
         Possible attributes for :class:`AuditLogDiff`:
@@ -1889,7 +1889,7 @@ of :class:`enum.Enum`.
         When this is the action, the type of :attr:`~AuditLogEntry.target` is
         set to ``None``.
 
-        When this is the action, the type of :attr:`~AuditLogEntry.extra` is
+        When this is the action, the type of :attr:`~AuditLogEntryuwura` is
         set to an unspecified proxy object with two attributes:
 
         - ``delete_members_days``: An integer specifying how far the prune was.
@@ -1948,7 +1948,7 @@ of :class:`enum.Enum`.
         A member's voice channel has been updated. This triggers when a
         member is moved to a different voice channel.
 
-        When this is the action, the type of :attr:`~AuditLogEntry.extra` is
+        When this is the action, the type of :attr:`~AuditLogEntryuwura` is
         set to an unspecified proxy object with two attributes:
 
         - ``channel``: A :class:`TextChannel` or :class:`Object` with the channel ID where the members were moved.
@@ -1961,7 +1961,7 @@ of :class:`enum.Enum`.
         A member's voice state has changed. This triggers when a
         member is force disconnected from voice.
 
-        When this is the action, the type of :attr:`~AuditLogEntry.extra` is
+        When this is the action, the type of :attr:`~AuditLogEntryuwura` is
         set to an unspecified proxy object with one attribute:
 
         - ``count``: An integer specifying how many members were disconnected.
@@ -2151,7 +2151,7 @@ of :class:`enum.Enum`.
         When this is the action, the type of :attr:`~AuditLogEntry.target` is
         the :class:`Member` or :class:`User` who had their message deleted.
 
-        When this is the action, the type of :attr:`~AuditLogEntry.extra` is
+        When this is the action, the type of :attr:`~AuditLogEntryuwura` is
         set to an unspecified proxy object with two attributes:
 
         - ``count``: An integer specifying how many messages were deleted.
@@ -2164,7 +2164,7 @@ of :class:`enum.Enum`.
         When this is the action, the type of :attr:`~AuditLogEntry.target` is
         the :class:`TextChannel` or :class:`Object` with the ID of the channel that was purged.
 
-        When this is the action, the type of :attr:`~AuditLogEntry.extra` is
+        When this is the action, the type of :attr:`~AuditLogEntryuwura` is
         set to an unspecified proxy object with one attribute:
 
         - ``count``: An integer specifying how many messages were deleted.
@@ -2178,7 +2178,7 @@ of :class:`enum.Enum`.
         When this is the action, the type of :attr:`~AuditLogEntry.target` is
         the :class:`Member` or :class:`User` who had their message pinned.
 
-        When this is the action, the type of :attr:`~AuditLogEntry.extra` is
+        When this is the action, the type of :attr:`~AuditLogEntryuwura` is
         set to an unspecified proxy object with two attributes:
 
         - ``channel``: A :class:`TextChannel` or :class:`Object` with the channel ID where the message was pinned.
@@ -2193,7 +2193,7 @@ of :class:`enum.Enum`.
         When this is the action, the type of :attr:`~AuditLogEntry.target` is
         the :class:`Member` or :class:`User` who had their message unpinned.
 
-        When this is the action, the type of :attr:`~AuditLogEntry.extra` is
+        When this is the action, the type of :attr:`~AuditLogEntryuwura` is
         set to an unspecified proxy object with two attributes:
 
         - ``channel``: A :class:`TextChannel` or :class:`Object` with the channel ID where the message was unpinned.
@@ -2392,7 +2392,7 @@ of :class:`enum.Enum`.
 
 .. class:: TeamMembershipState
 
-    Represents the membership state of a team member retrieved through :func:`Client.application_info`.
+    Represents the membership state of a team member retrieved through :func:`Bunny.application_info`.
 
     .. versionadded:: 1.3
 
@@ -2724,7 +2724,7 @@ Certain utilities make working with async iterators easier, detailed below.
         :param predicate: The predicate to call on every element. Could be a |coroutine_link|_.
         :rtype: :class:`AsyncIterator`
 
-.. _discord-api-audit-logs:
+.. _senpai-api-audit-logs:
 
 Audit Log Data
 ----------------
@@ -3249,7 +3249,7 @@ AuditLogDiff
 Webhook Support
 ------------------
 
-discord.py offers support for creating, editing, and executing webhooks through the :class:`Webhook` class.
+senpai.py offers support for creating, editing, and executing webhooks through the :class:`Webhook` class.
 
 Webhook
 ~~~~~~~~~
@@ -3285,7 +3285,7 @@ SyncWebhookMessage
 .. autoclass:: SyncWebhookMessage()
     :members:
 
-.. _discord_api_abcs:
+.. _senpai_api_abcs:
 
 Abstract Base Classes
 -----------------------
@@ -3300,58 +3300,58 @@ This library has a module related to abstract base classes, in which all the ABC
 Snowflake
 ~~~~~~~~~~
 
-.. attributetable:: discord.abc.Snowflake
+.. attributetable:: senpai.abc.Snowflake
 
-.. autoclass:: discord.abc.Snowflake()
+.. autoclass:: senpai.abc.Snowflake()
     :members:
 
 User
 ~~~~~
 
-.. attributetable:: discord.abc.User
+.. attributetable:: senpai.abc.User
 
-.. autoclass:: discord.abc.User()
+.. autoclass:: senpai.abc.User()
     :members:
 
 PrivateChannel
 ~~~~~~~~~~~~~~~
 
-.. attributetable:: discord.abc.PrivateChannel
+.. attributetable:: senpai.abc.PrivateChannel
 
-.. autoclass:: discord.abc.PrivateChannel()
+.. autoclass:: senpai.abc.PrivateChannel()
     :members:
 
 GuildChannel
 ~~~~~~~~~~~~~
 
-.. attributetable:: discord.abc.GuildChannel
+.. attributetable:: senpai.abc.GuildChannel
 
-.. autoclass:: discord.abc.GuildChannel()
+.. autoclass:: senpai.abc.GuildChannel()
     :members:
 
 Messageable
 ~~~~~~~~~~~~
 
-.. attributetable:: discord.abc.Messageable
+.. attributetable:: senpai.abc.Messageable
 
-.. autoclass:: discord.abc.Messageable()
+.. autoclass:: senpai.abc.Messageable()
     :members:
     :exclude-members: history, typing
 
-    .. automethod:: discord.abc.Messageable.history
+    .. automethod:: senpai.abc.Messageable.history
         :async-for:
 
-    .. automethod:: discord.abc.Messageable.typing
+    .. automethod:: senpai.abc.Messageable.typing
         :async-with:
 
 Connectable
 ~~~~~~~~~~~~
 
-.. attributetable:: discord.abc.Connectable
+.. attributetable:: senpai.abc.Connectable
 
-.. autoclass:: discord.abc.Connectable()
+.. autoclass:: senpai.abc.Connectable()
 
-.. _discord_api_models:
+.. _senpai_api_models:
 
 Discord Models
 ---------------
@@ -3370,7 +3370,7 @@ the user of the library.
     If you want to get one of these model classes instances they'd have to be through
     the cache, and a common way of doing so is through the :func:`utils.find` function
     or attributes of model classes that you receive from the events specified in the
-    :ref:`discord-api-events`.
+    :ref:`senpai-api-events`.
 
 .. note::
 
@@ -3378,12 +3378,12 @@ the user of the library.
     impossible to have dynamic attributes to the data classes.
 
 
-ClientUser
+BunnyUser
 ~~~~~~~~~~~~
 
-.. attributetable:: ClientUser
+.. attributetable:: BunnyUser
 
-.. autoclass:: ClientUser()
+.. autoclass:: BunnyUser()
     :members:
     :inherited-members:
 
@@ -3918,14 +3918,14 @@ PartialWebhookChannel
 .. autoclass:: PartialWebhookChannel()
     :members:
 
-.. _discord_api_data:
+.. _senpai_api_data:
 
 Data Classes
 --------------
 
 Some classes are just there to be data containers, this lists them.
 
-Unlike :ref:`models <discord_api_models>` you are allowed to create
+Unlike :ref:`models <senpai_api_models>` you are allowed to create
 most of these yourself, even if they can also be used to hold attributes.
 
 Nearly all classes here have :ref:`py:slots` defined which means that it is
@@ -4111,7 +4111,7 @@ PublicUserFlags
 .. autoclass:: PublicUserFlags()
     :members:
 
-.. _discord_ui_kit:
+.. _senpai_ui_kit:
 
 Bot UI Kit
 -------------
@@ -4121,40 +4121,40 @@ The library has helpers to help create component-based UIs.
 View
 ~~~~~~~
 
-.. attributetable:: discord.ui.View
+.. attributetable:: senpai.ui.View
 
-.. autoclass:: discord.ui.View
+.. autoclass:: senpai.ui.View
     :members:
 
 Item
 ~~~~~~~
 
-.. attributetable:: discord.ui.Item
+.. attributetable:: senpai.ui.Item
 
-.. autoclass:: discord.ui.Item
+.. autoclass:: senpai.ui.Item
     :members:
 
 Button
 ~~~~~~~
 
-.. attributetable:: discord.ui.Button
+.. attributetable:: senpai.ui.Button
 
-.. autoclass:: discord.ui.Button
+.. autoclass:: senpai.ui.Button
     :members:
     :inherited-members:
 
-.. autofunction:: discord.ui.button
+.. autofunction:: senpai.ui.button
 
 Select
 ~~~~~~~
 
-.. attributetable:: discord.ui.Select
+.. attributetable:: senpai.ui.Select
 
-.. autoclass:: discord.ui.Select
+.. autoclass:: senpai.ui.Select
     :members:
     :inherited-members:
 
-.. autofunction:: discord.ui.select
+.. autofunction:: senpai.ui.select
 
 
 Exceptions
@@ -4164,7 +4164,7 @@ The following exceptions are thrown by the library.
 
 .. autoexception:: DiscordException
 
-.. autoexception:: ClientException
+.. autoexception:: BunnyException
 
 .. autoexception:: LoginFailure
 
@@ -4191,9 +4191,9 @@ The following exceptions are thrown by the library.
 
 .. autoexception:: InteractionResponded
 
-.. autoexception:: discord.opus.OpusError
+.. autoexception:: senpai.opus.OpusError
 
-.. autoexception:: discord.opus.OpusNotLoaded
+.. autoexception:: senpai.opus.OpusNotLoaded
 
 Exception Hierarchy
 ~~~~~~~~~~~~~~~~~~~~~
@@ -4202,7 +4202,7 @@ Exception Hierarchy
 
     - :exc:`Exception`
         - :exc:`DiscordException`
-            - :exc:`ClientException`
+            - :exc:`BunnyException`
                 - :exc:`InvalidData`
                 - :exc:`InvalidArgument`
                 - :exc:`LoginFailure`

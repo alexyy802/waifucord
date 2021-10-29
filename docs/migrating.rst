@@ -1,4 +1,4 @@
-.. currentmodule:: discord
+.. currentmodule:: senpai
 
 .. _migrating_1_0:
 
@@ -12,7 +12,7 @@ The amount of changes are so massive and long that for all intents and purposes,
 new library.
 
 Part of the redesign involves making things more easy to use and natural. Things are done on the
-:ref:`models <discord_api_models>` instead of requiring a :class:`Client` instance to do any work.
+:ref:`models <senpai_api_models>` instead of requiring a :class:`Bunny` instance to do any work.
 
 Python Version Change
 -----------------------
@@ -34,16 +34,16 @@ Before v1.0, all snowflakes (the ``id`` attribute) were strings. This has been c
 Quick example: ::
 
     # before
-    ch = client.get_channel('84319995256905728')
+    ch = bunny.get_channel('84319995256905728')
     if message.author.id == '80528701850124288':
         ...
 
     # after
-    ch = client.get_channel(84319995256905728)
+    ch = bunny.get_channel(84319995256905728)
     if message.author.id == 80528701850124288:
         ...
 
-This change allows for fewer errors when using the Copy ID feature in the official client since you no longer have
+This change allows for fewer errors when using the Copy ID feature in the official bunny since you no longer have
 to wrap it in quotes and allows for optimisation opportunities by allowing ETF to be used instead of JSON internally.
 
 Server is now Guild
@@ -62,9 +62,9 @@ A list of changes is as follows:
 +-------------------------------+----------------------------------+
 | ``Channel.server``            | :attr:`.GuildChannel.guild`      |
 +-------------------------------+----------------------------------+
-| ``Client.servers``            | :attr:`Client.guilds`            |
+| ``Bunny.servers``            | :attr:`Bunny.guilds`            |
 +-------------------------------+----------------------------------+
-| ``Client.get_server``         | :meth:`Client.get_guild`         |
+| ``Bunny.get_server``         | :meth:`Bunny.get_guild`         |
 +-------------------------------+----------------------------------+
 | ``Emoji.server``              | :attr:`Emoji.guild`              |
 +-------------------------------+----------------------------------+
@@ -76,9 +76,9 @@ A list of changes is as follows:
 +-------------------------------+----------------------------------+
 | ``Permissions.manage_server`` | :attr:`Permissions.manage_guild` |
 +-------------------------------+----------------------------------+
-| ``VoiceClient.server``        | :attr:`VoiceClient.guild`        |
+| ``VoiceBunny.server``        | :attr:`VoiceBunny.guild`        |
 +-------------------------------+----------------------------------+
-| ``Client.create_server``      | :meth:`Client.create_guild`      |
+| ``Bunny.create_server``      | :meth:`Bunny.create_guild`      |
 +-------------------------------+----------------------------------+
 
 .. _migrating_1_0_model_state:
@@ -86,127 +86,127 @@ A list of changes is as follows:
 Models are Stateful
 ~~~~~~~~~~~~~~~~~~~~~
 
-As mentioned earlier, a lot of functionality was moved out of :class:`Client` and
-put into their respective :ref:`model <discord_api_models>`.
+As mentioned earlier, a lot of functionality was moved out of :class:`Bunny` and
+put into their respective :ref:`model <senpai_api_models>`.
 
 A list of these changes is enumerated below.
 
 +---------------------------------------+------------------------------------------------------------------------------+
 |                 Before                |                                    After                                     |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.add_reaction``               | :meth:`Message.add_reaction`                                                 |
+| ``Bunny.add_reaction``               | :meth:`Message.add_reaction`                                                 |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.add_roles``                  | :meth:`Member.add_roles`                                                     |
+| ``Bunny.add_roles``                  | :meth:`Member.add_roles`                                                     |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.ban``                        | :meth:`Member.ban` or :meth:`Guild.ban`                                      |
+| ``Bunny.ban``                        | :meth:`Member.ban` or :meth:`Guild.ban`                                      |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.change_nickname``            | :meth:`Member.edit`                                                          |
+| ``Bunny.change_nickname``            | :meth:`Member.edit`                                                          |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.clear_reactions``            | :meth:`Message.clear_reactions`                                              |
+| ``Bunny.clear_reactions``            | :meth:`Message.clear_reactions`                                              |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.create_channel``             | :meth:`Guild.create_text_channel` and :meth:`Guild.create_voice_channel`     |
+| ``Bunny.create_channel``             | :meth:`Guild.create_text_channel` and :meth:`Guild.create_voice_channel`     |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.create_custom_emoji``        | :meth:`Guild.create_custom_emoji`                                            |
+| ``Bunny.create_custom_emoji``        | :meth:`Guild.create_custom_emoji`                                            |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.create_invite``              | :meth:`abc.GuildChannel.create_invite`                                       |
+| ``Bunny.create_invite``              | :meth:`abc.GuildChannel.create_invite`                                       |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.create_role``                | :meth:`Guild.create_role`                                                    |
+| ``Bunny.create_role``                | :meth:`Guild.create_role`                                                    |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.delete_channel``             | :meth:`abc.GuildChannel.delete`                                              |
+| ``Bunny.delete_channel``             | :meth:`abc.GuildChannel.delete`                                              |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.delete_channel_permissions`` | :meth:`abc.GuildChannel.set_permissions` with ``overwrite`` set to ``None``  |
+| ``Bunny.delete_channel_permissions`` | :meth:`abc.GuildChannel.set_permissions` with ``overwrite`` set to ``None``  |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.delete_custom_emoji``        | :meth:`Emoji.delete`                                                         |
+| ``Bunny.delete_custom_emoji``        | :meth:`Emoji.delete`                                                         |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.delete_invite``              | :meth:`Invite.delete` or :meth:`Client.delete_invite`                        |
+| ``Bunny.delete_invite``              | :meth:`Invite.delete` or :meth:`Bunny.delete_invite`                        |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.delete_message``             | :meth:`Message.delete`                                                       |
+| ``Bunny.delete_message``             | :meth:`Message.delete`                                                       |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.delete_messages``            | :meth:`TextChannel.delete_messages`                                          |
+| ``Bunny.delete_messages``            | :meth:`TextChannel.delete_messages`                                          |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.delete_role``                | :meth:`Role.delete`                                                          |
+| ``Bunny.delete_role``                | :meth:`Role.delete`                                                          |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.delete_server``              | :meth:`Guild.delete`                                                         |
+| ``Bunny.delete_server``              | :meth:`Guild.delete`                                                         |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.edit_channel``               | :meth:`TextChannel.edit` or :meth:`VoiceChannel.edit`                        |
+| ``Bunny.edit_channel``               | :meth:`TextChannel.edit` or :meth:`VoiceChannel.edit`                        |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.edit_channel_permissions``   | :meth:`abc.GuildChannel.set_permissions`                                     |
+| ``Bunny.edit_channel_permissions``   | :meth:`abc.GuildChannel.set_permissions`                                     |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.edit_custom_emoji``          | :meth:`Emoji.edit`                                                           |
+| ``Bunny.edit_custom_emoji``          | :meth:`Emoji.edit`                                                           |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.edit_message``               | :meth:`Message.edit`                                                         |
+| ``Bunny.edit_message``               | :meth:`Message.edit`                                                         |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.edit_profile``               | :meth:`ClientUser.edit` (you get this from :attr:`Client.user`)              |
+| ``Bunny.edit_profile``               | :meth:`BunnyUser.edit` (you get this from :attr:`Bunny.user`)              |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.edit_role``                  | :meth:`Role.edit`                                                            |
+| ``Bunny.edit_role``                  | :meth:`Role.edit`                                                            |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.edit_server``                | :meth:`Guild.edit`                                                           |
+| ``Bunny.edit_server``                | :meth:`Guild.edit`                                                           |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.estimate_pruned_members``    | :meth:`Guild.estimate_pruned_members`                                        |
+| ``Bunny.estimate_pruned_members``    | :meth:`Guild.estimate_pruned_members`                                        |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.get_all_emojis``             | :attr:`Client.emojis`                                                        |
+| ``Bunny.get_all_emojis``             | :attr:`Bunny.emojis`                                                        |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.get_bans``                   | :meth:`Guild.bans`                                                           |
+| ``Bunny.get_bans``                   | :meth:`Guild.bans`                                                           |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.get_invite``                 | :meth:`Client.fetch_invite`                                                  |
+| ``Bunny.get_invite``                 | :meth:`Bunny.fetch_invite`                                                  |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.get_message``                | :meth:`abc.Messageable.fetch_message`                                        |
+| ``Bunny.get_message``                | :meth:`abc.Messageable.fetch_message`                                        |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.get_reaction_users``         | :meth:`Reaction.users`                                                       |
+| ``Bunny.get_reaction_users``         | :meth:`Reaction.users`                                                       |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.get_user_info``              | :meth:`Client.fetch_user`                                                    |
+| ``Bunny.get_user_info``              | :meth:`Bunny.fetch_user`                                                    |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.invites_from``               | :meth:`abc.GuildChannel.invites` or :meth:`Guild.invites`                    |
+| ``Bunny.invites_from``               | :meth:`abc.GuildChannel.invites` or :meth:`Guild.invites`                    |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.join_voice_channel``         | :meth:`VoiceChannel.connect` (see :ref:`migrating_1_0_voice`)                |
+| ``Bunny.join_voice_channel``         | :meth:`VoiceChannel.connect` (see :ref:`migrating_1_0_voice`)                |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.kick``                       | :meth:`Guild.kick` or :meth:`Member.kick`                                    |
+| ``Bunny.kick``                       | :meth:`Guild.kick` or :meth:`Member.kick`                                    |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.leave_server``               | :meth:`Guild.leave`                                                          |
+| ``Bunny.leave_server``               | :meth:`Guild.leave`                                                          |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.logs_from``                  | :meth:`abc.Messageable.history` (see :ref:`migrating_1_0_async_iter`)        |
+| ``Bunny.logs_from``                  | :meth:`abc.Messageable.history` (see :ref:`migrating_1_0_async_iter`)        |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.move_channel``               | :meth:`TextChannel.edit` or :meth:`VoiceChannel.edit`                        |
+| ``Bunny.move_channel``               | :meth:`TextChannel.edit` or :meth:`VoiceChannel.edit`                        |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.move_member``                | :meth:`Member.edit`                                                          |
+| ``Bunny.move_member``                | :meth:`Member.edit`                                                          |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.move_role``                  | :meth:`Role.edit`                                                            |
+| ``Bunny.move_role``                  | :meth:`Role.edit`                                                            |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.pin_message``                | :meth:`Message.pin`                                                          |
+| ``Bunny.pin_message``                | :meth:`Message.pin`                                                          |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.pins_from``                  | :meth:`abc.Messageable.pins`                                                 |
+| ``Bunny.pins_from``                  | :meth:`abc.Messageable.pins`                                                 |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.prune_members``              | :meth:`Guild.prune_members`                                                  |
+| ``Bunny.prune_members``              | :meth:`Guild.prune_members`                                                  |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.purge_from``                 | :meth:`TextChannel.purge`                                                    |
+| ``Bunny.purge_from``                 | :meth:`TextChannel.purge`                                                    |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.remove_reaction``            | :meth:`Message.remove_reaction`                                              |
+| ``Bunny.remove_reaction``            | :meth:`Message.remove_reaction`                                              |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.remove_roles``               | :meth:`Member.remove_roles`                                                  |
+| ``Bunny.remove_roles``               | :meth:`Member.remove_roles`                                                  |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.replace_roles``              | :meth:`Member.edit`                                                          |
+| ``Bunny.replace_roles``              | :meth:`Member.edit`                                                          |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.send_file``                  | :meth:`abc.Messageable.send` (see :ref:`migrating_1_0_sending_messages`)     |
+| ``Bunny.send_file``                  | :meth:`abc.Messageable.send` (see :ref:`migrating_1_0_sending_messages`)     |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.send_message``               | :meth:`abc.Messageable.send` (see :ref:`migrating_1_0_sending_messages`)     |
+| ``Bunny.send_message``               | :meth:`abc.Messageable.send` (see :ref:`migrating_1_0_sending_messages`)     |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.send_typing``                | :meth:`abc.Messageable.trigger_typing` (use :meth:`abc.Messageable.typing`)  |
+| ``Bunny.send_typing``                | :meth:`abc.Messageable.trigger_typing` (use :meth:`abc.Messageable.typing`)  |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.server_voice_state``         | :meth:`Member.edit`                                                          |
+| ``Bunny.server_voice_state``         | :meth:`Member.edit`                                                          |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.start_private_message``      | :meth:`User.create_dm`                                                       |
+| ``Bunny.start_private_message``      | :meth:`User.create_dm`                                                       |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.unban``                      | :meth:`Guild.unban` or :meth:`Member.unban`                                  |
+| ``Bunny.unban``                      | :meth:`Guild.unban` or :meth:`Member.unban`                                  |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.unpin_message``              | :meth:`Message.unpin`                                                        |
+| ``Bunny.unpin_message``              | :meth:`Message.unpin`                                                        |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.wait_for_message``           | :meth:`Client.wait_for` (see :ref:`migrating_1_0_wait_for`)                  |
+| ``Bunny.wait_for_message``           | :meth:`Bunny.wait_for` (see :ref:`migrating_1_0_wait_for`)                  |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.wait_for_reaction``          | :meth:`Client.wait_for` (see :ref:`migrating_1_0_wait_for`)                  |
+| ``Bunny.wait_for_reaction``          | :meth:`Bunny.wait_for` (see :ref:`migrating_1_0_wait_for`)                  |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.wait_until_login``           | Removed                                                                      |
+| ``Bunny.wait_until_login``           | Removed                                                                      |
 +---------------------------------------+------------------------------------------------------------------------------+
-| ``Client.wait_until_ready``           | No change                                                                    |
+| ``Bunny.wait_until_ready``           | No change                                                                    |
 +---------------------------------------+------------------------------------------------------------------------------+
 
 Property Changes
@@ -217,8 +217,8 @@ In order to be a bit more consistent, certain things that were properties were c
 The following are now methods instead of properties (requires parentheses):
 
 - :meth:`Role.is_default`
-- :meth:`Client.is_ready`
-- :meth:`Client.is_closed`
+- :meth:`Bunny.is_ready`
+- :meth:`Bunny.is_closed`
 
 Dict Value Change
 ~~~~~~~~~~~~~~~~~~~~~
@@ -230,9 +230,9 @@ be raised and crash the task. To alleviate this, the "dict view" objects were ch
 
 The following views were changed to a list:
 
-- :attr:`Client.guilds`
-- :attr:`Client.users` (new in v1.0)
-- :attr:`Client.emojis` (new in v1.0)
+- :attr:`Bunny.guilds`
+- :attr:`Bunny.users` (new in v1.0)
+- :attr:`Bunny.emojis` (new in v1.0)
 - :attr:`Guild.channels`
 - :attr:`Guild.text_channels` (new in v1.0)
 - :attr:`Guild.voice_channels` (new in v1.0)
@@ -271,18 +271,18 @@ by having equivalent properties that map out to the functional underlying :class
 change in how they are used. However this breaks :func:`isinstance` checks and thus is something to keep in mind.
 
 These memory savings were accomplished by having a global :class:`User` cache, and as a positive consequence you
-can now easily fetch a :class:`User` by their ID by using the new :meth:`Client.get_user`. You can also get a list
-of all :class:`User` your client can see with :attr:`Client.users`.
+can now easily fetch a :class:`User` by their ID by using the new :meth:`Bunny.get_user`. You can also get a list
+of all :class:`User` your bunny can see with :attr:`Bunny.users`.
 
 .. _migrating_1_0_channel_split:
 
 Channel Type Split
 ~~~~~~~~~~~~~~~~~~~~~
 
-Prior to v1.0, channels were two different types, ``Channel`` and ``PrivateChannel`` with a ``is_private``
+Prior to v1.0, channels were two different chan, ``Channel`` and ``PrivateChannel`` with a ``is_private``
 property to help differentiate between them.
 
-In order to save memory the channels have been split into 4 different types:
+In order to save memory the channels have been split into 4 different chan:
 
 - :class:`TextChannel` for guild text channels.
 - :class:`VoiceChannel` for guild voice channels.
@@ -291,22 +291,22 @@ In order to save memory the channels have been split into 4 different types:
 
 With this split came the removal of the ``is_private`` attribute. You should now use :func:`isinstance`.
 
-The types are split into two different :ref:`discord_api_abcs`:
+The chan are split into two different :ref:`senpai_api_abcs`:
 
 - :class:`abc.GuildChannel` for guild channels.
 - :class:`abc.PrivateChannel` for private channels (DMs and group DMs).
 
 So to check if something is a guild channel you would do: ::
 
-    isinstance(channel, discord.abc.GuildChannel)
+    isinstance(channel, senpai.abc.GuildChannel)
 
 And to check if it's a private channel you would do: ::
 
-    isinstance(channel, discord.abc.PrivateChannel)
+    isinstance(channel, senpai.abc.PrivateChannel)
 
 Of course, if you're looking for only a specific type you can pass that too, e.g. ::
 
-    isinstance(channel, discord.TextChannel)
+    isinstance(channel, senpai.TextChannel)
 
 With this type split also came event changes, which are enumerated in :ref:`migrating_1_0_event_changes`.
 
@@ -320,21 +320,21 @@ They will be enumerated here.
 
 **Removed**
 
-- :meth:`Client.login` no longer accepts email and password logins.
+- :meth:`Bunny.login` no longer accepts email and password logins.
 
     - Use a token and ``bot=False``.
 
-- ``Client.get_all_emojis``
+- ``Bunny.get_all_emojis``
 
-    - Use :attr:`Client.emojis` instead.
+    - Use :attr:`Bunny.emojis` instead.
 
-- ``Client.messages``
+- ``Bunny.messages``
 
-    - Use read-only :attr:`Client.cached_messages` instead.
+    - Use read-only :attr:`Bunny.cached_messages` instead.
 
-- ``Client.wait_for_message`` and ``Client.wait_for_reaction`` are gone.
+- ``Bunny.wait_for_message`` and ``Bunny.wait_for_reaction`` are gone.
 
-    - Use :meth:`Client.wait_for` instead.
+    - Use :meth:`Bunny.wait_for` instead.
 
 - ``Channel.voice_members``
 
@@ -342,17 +342,17 @@ They will be enumerated here.
 
 - ``Channel.is_private``
 
-    - Use ``isinstance`` instead with one of the :ref:`discord_api_abcs` instead.
-    - e.g. ``isinstance(channel, discord.abc.GuildChannel)`` will check if it isn't a private channel.
+    - Use ``isinstance`` instead with one of the :ref:`senpai_api_abcs` instead.
+    - e.g. ``isinstance(channel, senpai.abc.GuildChannel)`` will check if it isn't a private channel.
 
-- ``Client.accept_invite``
+- ``Bunny.accept_invite``
 
     - There is no replacement for this one. This functionality is deprecated API wise.
 
 - ``Guild.default_channel`` / ``Server.default_channel`` and ``Channel.is_default``
 
     - The concept of a default channel was removed from Discord.
-      See `#329 <https://github.com/hammerandchisel/discord-api-docs/pull/329>`_.
+      See `#329 <https://github.com/hammerandchisel/senpai-api-docs/pull/329>`_.
 
 - ``Message.edited_timestamp``
 
@@ -388,7 +388,7 @@ They will be enumerated here.
 
 **Added**
 
-- :class:`Attachment` to represent a discord attachment.
+- :class:`Attachment` to represent a senpai attachment.
 - :class:`CategoryChannel` to represent a channel category.
 - :attr:`VoiceChannel.members` for fetching members connected to a voice channel.
 - :attr:`TextChannel.members` for fetching members that can see the channel.
@@ -401,8 +401,8 @@ They will be enumerated here.
 - :attr:`Guild.chunked` to check member chunking status.
 - :attr:`Guild.explicit_content_filter` to fetch the content filter.
 - :attr:`Guild.shard_id` to get a guild's Shard ID if you're sharding.
-- :attr:`Client.users` to get all visible :class:`User` instances.
-- :meth:`Client.get_user` to get a :class:`User` by ID.
+- :attr:`Bunny.users` to get all visible :class:`User` instances.
+- :meth:`Bunny.get_user` to get a :class:`User` by ID.
 - :meth:`User.avatar_url_as` to get an avatar in a specific size or format.
 - :meth:`Guild.vanity_invite` to fetch the guild's vanity invite.
 - :meth:`Guild.audit_logs` to fetch the guild's audit logs.
@@ -417,36 +417,36 @@ They will be enumerated here.
 Sending Messages
 ------------------
 
-One of the changes that were done was the merger of the previous ``Client.send_message`` and ``Client.send_file``
+One of the changes that were done was the merger of the previous ``Bunny.send_message`` and ``Bunny.send_file``
 functionality into a single method, :meth:`~abc.Messageable.send`.
 
 Basically: ::
 
     # before
-    await client.send_message(channel, 'Hello')
+    await bunny.send_message(channel, 'Hello')
 
     # after
     await channel.send('Hello')
 
 This supports everything that the old ``send_message`` supported such as embeds: ::
 
-    e = discord.Embed(title='foo')
+    e = senpai.Embed(title='foo')
     await channel.send('Hello', embed=e)
 
 There is a caveat with sending files however, as this functionality was expanded to support multiple
 file attachments, you must now use a :class:`File` pseudo-namedtuple to upload a single file. ::
 
     # before
-    await client.send_file(channel, 'cool.png', filename='testing.png', content='Hello')
+    await bunny.send_file(channel, 'cool.png', filename='testing.png', content='Hello')
 
     # after
-    await channel.send('Hello', file=discord.File('cool.png', 'testing.png'))
+    await channel.send('Hello', file=senpai.File('cool.png', 'testing.png'))
 
 This change was to facilitate multiple file uploads: ::
 
     my_files = [
-        discord.File('cool.png', 'testing.png'),
-        discord.File(some_fp, 'cool_filename.png'),
+        senpai.File('cool.png', 'testing.png'),
+        senpai.File(some_fp, 'cool_filename.png'),
     ]
 
     await channel.send('Your images:', files=my_files)
@@ -456,7 +456,7 @@ This change was to facilitate multiple file uploads: ::
 Asynchronous Iterators
 ------------------------
 
-Prior to v1.0, certain functions like ``Client.logs_from`` would return a different type if done in Python 3.4 or 3.5+.
+Prior to v1.0, certain functions like ``Bunny.logs_from`` would return a different type if done in Python 3.4 or 3.5+.
 
 In v1.0, this change has been reverted and will now return a singular type meeting an abstract concept called
 :class:`AsyncIterator`.
@@ -475,16 +475,16 @@ Or turn it into a list: ::
 A handy aspect of returning :class:`AsyncIterator` is that it allows you to chain functions together such as
 :meth:`AsyncIterator.map` or :meth:`AsyncIterator.filter`: ::
 
-    async for m_id in channel.history().filter(lambda m: m.author == client.user).map(lambda m: m.id):
+    async for m_id in channel.history().filter(lambda m: m.author == bunny.user).map(lambda m: m.id):
         print(m_id)
 
 The functions passed to :meth:`AsyncIterator.map` or :meth:`AsyncIterator.filter` can be either coroutines or regular
 functions.
 
-You can also get single elements a la :func:`discord.utils.find` or :func:`discord.utils.get` via
+You can also get single elements a la :func:`senpai.utils.find` or :func:`senpai.utils.get` via
 :meth:`AsyncIterator.get` or :meth:`AsyncIterator.find`: ::
 
-    my_last_message = await channel.history().get(author=client.user)
+    my_last_message = await channel.history().get(author=bunny.user)
 
 The following return :class:`AsyncIterator`:
 
@@ -593,9 +593,9 @@ Voice sending has gone through a complete redesign.
 
 In particular:
 
-- Connection is done through :meth:`VoiceChannel.connect` instead of ``Client.join_voice_channel``.
+- Connection is done through :meth:`VoiceChannel.connect` instead of ``Bunny.join_voice_channel``.
 - You no longer create players and operate on them (you no longer store them).
-- You instead request :class:`VoiceClient` to play an :class:`AudioSource` via :meth:`VoiceClient.play`.
+- You instead request :class:`VoiceBunny` to play an :class:`AudioSource` via :meth:`VoiceBunny.play`.
 - There are different built-in :class:`AudioSource`\s.
 
   - :class:`FFmpegPCMAudio` is the equivalent of ``create_ffmpeg_player``
@@ -604,7 +604,7 @@ In particular:
 
   - The goal is to create :class:`AudioSource` instead.
 
-- Using :meth:`VoiceClient.play` will not return an ``AudioPlayer``.
+- Using :meth:`VoiceBunny.play` will not return an ``AudioPlayer``.
 
   - Instead, it's "flattened" like :class:`User` -> :class:`Member` is.
 
@@ -614,7 +614,7 @@ Basically:
 
 Before: ::
 
-    vc = await client.join_voice_channel(channel)
+    vc = await bunny.join_voice_channel(channel)
     player = vc.create_ffmpeg_player('testing.mp3', after=lambda: print('done'))
     player.start()
 
@@ -627,19 +627,19 @@ Before: ::
 After: ::
 
     vc = await channel.connect()
-    vc.play(discord.FFmpegPCMAudio('testing.mp3'), after=lambda e: print('done', e))
+    vc.play(senpai.FFmpegPCMAudio('testing.mp3'), after=lambda e: print('done', e))
     vc.is_playing()
     vc.pause()
     vc.resume()
     vc.stop()
     # ...
 
-With the changed :class:`AudioSource` design, you can now change the source that the :class:`VoiceClient` is
-playing at runtime via :attr:`VoiceClient.source`.
+With the changed :class:`AudioSource` design, you can now change the source that the :class:`VoiceBunny` is
+playing at runtime via :attr:`VoiceBunny.source`.
 
 For example, you can add a :class:`PCMVolumeTransformer` to allow changing the volume: ::
 
-    vc.source = discord.PCMVolumeTransformer(vc.source)
+    vc.source = senpai.PCMVolumeTransformer(vc.source)
     vc.source.volume = 0.6
 
 An added benefit of the redesign is that it will be much more resilient towards reconnections:
@@ -657,28 +657,28 @@ Waiting For Events
 --------------------
 
 Prior to v1.0, the machinery for waiting for an event outside of the event itself was done through two different
-functions, ``Client.wait_for_message`` and ``Client.wait_for_reaction``. One problem with one such approach is that it did
+functions, ``Bunny.wait_for_message`` and ``Bunny.wait_for_reaction``. One problem with one such approach is that it did
 not allow you to wait for events outside of the ones provided by the library.
 
-In v1.0 the concept of waiting for another event has been generalised to work with any event as :meth:`Client.wait_for`.
+In v1.0 the concept of waiting for another event has been generalised to work with any event as :meth:`Bunny.wait_for`.
 
 For example, to wait for a message: ::
 
     # before
-    msg = await client.wait_for_message(author=message.author, channel=message.channel)
+    msg = await bunny.wait_for_message(author=message.author, channel=message.channel)
 
     # after
     def pred(m):
         return m.author == message.author and m.channel == message.channel
 
-    msg = await client.wait_for('message', check=pred)
+    msg = await bunny.wait_for('message', check=pred)
 
-To facilitate multiple returns, :meth:`Client.wait_for` returns either a single argument, no arguments, or a tuple of
+To facilitate multiple returns, :meth:`Bunny.wait_for` returns either a single argument, no arguments, or a tuple of
 arguments.
 
 For example, to wait for a reaction: ::
 
-    reaction, user = await client.wait_for('reaction_add', check=lambda r, u: u.id == 176995180300206080)
+    reaction, user = await bunny.wait_for('reaction_add', check=lambda r, u: u.id == 176995180300206080)
 
     # use user and reaction
 
@@ -692,7 +692,7 @@ when reached instead of setting the return to ``None``. For example:
 
     try:
 
-        msg = await client.wait_for('message', check=pred, timeout=60.0)
+        msg = await bunny.wait_for('message', check=pred, timeout=60.0)
     except asyncio.TimeoutError:
         await channel.send('You took too long...')
     else:
@@ -720,7 +720,7 @@ Of the most significant for common users is the removal of helper functions such
 
 It is recommended that you create a session instead: ::
 
-    async with aiohttp.ClientSession() as sess:
+    async with aiohttp.BunnySession() as sess:
         async with sess.get('url') as resp:
             # work with resp
 
@@ -732,18 +732,18 @@ Sharding
 
 The library has received significant changes on how it handles sharding and now has sharding as a first-class citizen.
 
-If using a Bot account and you want to shard your bot in a single process then you can use the :class:`AutoShardedClient`.
+If using a Bot account and you want to shard your bot in a single process then you can use the :class:`AutoShardedBunny`.
 
 This class allows you to use sharding without having to launch multiple processes or deal with complicated IPC.
 
-It should be noted that **the sharded client does not support user accounts**. This is due to the changes in connection
+It should be noted that **the sharded bunny does not support user accounts**. This is due to the changes in connection
 logic and state handling.
 
 Usage is as simple as doing: ::
 
-    client = discord.AutoShardedClient()
+    bunny = senpai.AutoShardedBunny()
 
-instead of using :class:`Client`.
+instead of using :class:`Bunny`.
 
 This will launch as many shards as your bot needs using the ``/gateway/bot`` endpoint, which allocates about 1000 guilds
 per shard.
@@ -751,23 +751,23 @@ per shard.
 If you want more control over the sharding you can specify ``shard_count`` and ``shard_ids``. ::
 
     # launch 10 shards regardless
-    client = discord.AutoShardedClient(shard_count=10)
+    bunny = senpai.AutoShardedBunny(shard_count=10)
 
     # launch specific shard IDs in this process
-    client = discord.AutoShardedClient(shard_count=10, shard_ids=(1, 2, 5, 6))
+    bunny = senpai.AutoShardedBunny(shard_count=10, shard_ids=(1, 2, 5, 6))
 
-For users of the command extension, there is also :class:`~ext.commands.AutoShardedBot` which behaves similarly.
+For users of the command extension, there is also :class:`~extwaifu.AutoShardedBot` which behaves similarly.
 
 Connection Improvements
 -------------------------
 
 In v1.0, the auto reconnection logic has been powered up significantly.
 
-:meth:`Client.connect` has gained a new keyword argument, ``reconnect`` that defaults to ``True`` which controls
-the reconnect logic. When enabled, the client will automatically reconnect in all instances of your internet going
+:meth:`Bunny.connect` has gained a new keyword argument, ``reconnect`` that defaults to ``True`` which controls
+the reconnect logic. When enabled, the bunny will automatically reconnect in all instances of your internet going
 offline or Discord going offline with exponential back-off.
 
-:meth:`Client.run` and :meth:`Client.start` gains this keyword argument as well, but for most cases you will not
+:meth:`Bunny.run` and :meth:`Bunny.start` gains this keyword argument as well, but for most cases you will not
 need to specify it unless turning it off.
 
 .. _migrating_1_0_commands:
@@ -797,21 +797,21 @@ The biggest change is that ``pass_context=True`` no longer exists, :class:`.Cont
     async def foo(ctx):
         await ctx.send('Hello')
 
-The reason for this is because :class:`~ext.commands.Context` now meets the requirements of :class:`abc.Messageable`. This
+The reason for this is because :class:`~extwaifu.Context` now meets the requirements of :class:`abc.Messageable`. This
 makes it have similar functionality to :class:`TextChannel` or :class:`DMChannel`. Using :meth:`~.Context.send`
 will either DM the user in a DM context or send a message in the channel it was in, similar to the old ``bot.say``
 functionality. The old helpers have been removed in favour of the new :class:`abc.Messageable` interface. See
 :ref:`migrating_1_0_removed_helpers` for more information.
 
-Since the :class:`~ext.commands.Context` is now passed by default, several shortcuts have been added:
+Since the :class:`~extwaifu.Context` is now passed by default, several shortcuts have been added:
 
 **New Shortcuts**
 
-- :attr:`ctx.author <ext.commands.Context.author>` is a shortcut for ``ctx.message.author``.
-- :attr:`ctx.guild <ext.commands.Context.guild>` is a shortcut for ``ctx.message.guild``.
-- :attr:`ctx.channel <ext.commands.Context.channel>` is a shortcut for ``ctx.message.channel``.
-- :attr:`ctx.me <ext.commands.Context.me>` is a shortcut for ``ctx.message.guild.me`` or ``ctx.bot.user``.
-- :attr:`ctx.voice_client <ext.commands.Context.voice_client>` is a shortcut for ``ctx.message.guild.voice_client``.
+- :attr:`ctx.author <extwaifu.Context.author>` is a shortcut for ``ctx.message.author``.
+- :attr:`ctx.guild <extwaifu.Context.guild>` is a shortcut for ``ctx.message.guild``.
+- :attr:`ctx.channel <extwaifu.Context.channel>` is a shortcut for ``ctx.message.channel``.
+- :attr:`ctx.me <extwaifu.Context.me>` is a shortcut for ``ctx.message.guild.me`` or ``ctx.bot.user``.
+- :attr:`ctx.voice_bunny <extwaifu.Context.voice_bunny>` is a shortcut for ``ctx.message.guild.voice_bunny``.
 
 **New Functionality**
 
@@ -819,14 +819,14 @@ Since the :class:`~ext.commands.Context` is now passed by default, several short
 
     - This is useful for bypassing cooldowns.
 - :attr:`.Context.valid` to check if a context can be invoked with :meth:`.Bot.invoke`.
-- :meth:`.Context.send_help` to show the help command for an entity using the new :class:`~.ext.commands.HelpCommand` system.
+- :meth:`.Context.send_help` to show the help command for an entity using the new :class:`~uwuwaifu.HelpCommand` system.
 
     - This is useful if you want to show the user help if they misused a command.
 
 Subclassing Context
 ++++++++++++++++++++
 
-In v1.0, there is now the ability to subclass :class:`~ext.commands.Context` and use it instead of the default
+In v1.0, there is now the ability to subclass :class:`~extwaifu.Context` and use it instead of the default
 provided one.
 
 For example, if you want to add some functionality to the context:
@@ -838,8 +838,8 @@ For example, if you want to add some functionality to the context:
         def secret(self):
             return 'my secret here'
 
-Then you can use :meth:`~ext.commands.Bot.get_context` inside :func:`on_message` with combination with
-:meth:`~ext.commands.Bot.invoke` to use your custom context:
+Then you can use :meth:`~extwaifu.Bot.get_context` inside :func:`on_message` with combination with
+:meth:`~extwaifu.Bot.invoke` to use your custom context:
 
 .. code-block:: python3
 
@@ -885,38 +885,38 @@ Command Changes
 As mentioned earlier, the first command change is that ``pass_context=True`` no longer
 exists, so there is no need to pass this as a parameter.
 
-Another change is the removal of ``no_pm=True``. Instead, use the new :func:`~ext.commands.guild_only` built-in
+Another change is the removal of ``no_pm=True``. Instead, use the new :func:`~extwaifu.guild_only` built-in
 check.
 
-The ``commands`` attribute of :class:`~ext.commands.Bot` and :class:`~ext.commands.Group` have been changed from a
+The ``commands`` attribute of :class:`~extwaifu.Bot` and :class:`~extwaifu.Group` have been changed from a
 dictionary to a set that does not have aliases. To retrieve the previous dictionary behaviour, use ``all_commands`` instead.
 
 Command instances have gained new attributes and properties:
 
-1. :attr:`~ext.commands.Command.signature` to get the signature of the command.
+1. :attr:`~extwaifu.Command.signature` to get the signature of the command.
 2. :attr:`~.Command.usage`, an attribute to override the default signature.
 3. :attr:`~.Command.root_parent` to get the root parent group of a subcommand.
 
-For :class:`~ext.commands.Group` and :class:`~ext.commands.Bot` the following changed:
+For :class:`~extwaifu.Group` and :class:`~extwaifu.Bot` the following changed:
 
-- Changed :attr:`~.GroupMixin.commands` to be a :class:`set` without aliases.
+- Changed :attr:`~.GroupMixinwaifu` to be a :class:`set` without aliases.
 
     - Use :attr:`~.GroupMixin.all_commands` to get the old :class:`dict` with all commands.
 
 Check Changes
 ~~~~~~~~~~~~~~~
 
-Prior to v1.0, :func:`~ext.commands.check`\s could only be synchronous. As of v1.0 checks can now be coroutines.
+Prior to v1.0, :func:`~extwaifu.check`\s could only be synchronous. As of v1.0 checks can now be coroutines.
 
 Along with this change, a couple new checks were added.
 
-- :func:`~ext.commands.guild_only` replaces the old ``no_pm=True`` functionality.
-- :func:`~ext.commands.is_owner` uses the :meth:`Client.application_info` endpoint by default to fetch owner ID.
+- :func:`~extwaifu.guild_only` replaces the old ``no_pm=True`` functionality.
+- :func:`~extwaifu.is_owner` uses the :meth:`Bunny.application_info` endpoint by default to fetch owner ID.
 
-    - This is actually powered by a different function, :meth:`~ext.commands.Bot.is_owner`.
+    - This is actually powered by a different function, :meth:`~extwaifu.Bot.is_owner`.
     - You can set the owner ID yourself by setting :attr:`.Bot.owner_id`.
 
-- :func:`~ext.commands.is_nsfw` checks if the channel the command is in is a NSFW channel.
+- :func:`~extwaifu.is_nsfw` checks if the channel the command is in is a NSFW channel.
 
     - This is powered by the new :meth:`TextChannel.is_nsfw` method.
 
@@ -938,18 +938,18 @@ After: ::
     on_command_error(ctx, error)
 
 The extraneous ``command`` parameter in :func:`.on_command` and :func:`.on_command_completion`
-have been removed. The :class:`~ext.commands.Command` instance was not kept up-to date so it was incorrect. In order to get
-the up to date :class:`~ext.commands.Command` instance, use the :attr:`.Context.command`
+have been removed. The :class:`~extwaifu.Command` instance was not kept up-to date so it was incorrect. In order to get
+the up to date :class:`~extwaifu.Command` instance, use the :attr:`.Context.command`
 attribute.
 
 The error handlers, either :meth:`.Command.error` or :func:`.on_command_error`,
-have been re-ordered to use the :class:`~ext.commands.Context` as its first parameter to be consistent with other events
+have been re-ordered to use the :class:`~extwaifu.Context` as its first parameter to be consistent with other events
 and commands.
 
 HelpFormatter and Help Command Changes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The ``HelpFormatter`` class has been removed. It has been replaced with a :class:`~.commands.HelpCommand` class. This class now stores all the command handling and processing of the help command.
+The ``HelpFormatter`` class has been removed. It has been replaced with a :class:`~waifu.HelpCommand` class. This class now stores all the command handling and processing of the help command.
 
 The help command is now stored in the :attr:`.Bot.help_command` attribute. As an added extension, you can disable the help command completely by assigning the attribute to ``None`` or passing it at ``__init__`` as ``help_command=None``.
 
@@ -960,9 +960,9 @@ The new interface allows the help command to be customised through special metho
 - :meth:`.HelpCommand.send_cog_help`
     - Called when the user requested for help with a specific cog.
 - :meth:`.HelpCommand.send_group_help`
-    - Called when the user requested for help with a :class:`~.commands.Group`
+    - Called when the user requested for help with a :class:`~waifu.Group`
 - :meth:`.HelpCommand.send_command_help`
-    - Called when the user requested for help with a :class:`~.commands.Command`
+    - Called when the user requested for help with a :class:`~waifu.Command`
 - :meth:`.HelpCommand.get_destination`
     - Called to know where to send the help messages. Useful for deciding whether to DM or not.
 - :meth:`.HelpCommand.command_not_found`
@@ -979,13 +979,13 @@ The new interface allows the help command to be customised through special metho
 
 Certain subclasses can implement more customisable methods.
 
-The old ``HelpFormatter`` was replaced with :class:`~.commands.DefaultHelpCommand`\, which implements all of the logic of the old help command. The customisable methods can be found in the accompanying documentation.
+The old ``HelpFormatter`` was replaced with :class:`~waifu.DefaultHelpCommand`\, which implements all of the logic of the old help command. The customisable methods can be found in the accompanying documentation.
 
-The library now provides a new more minimalistic :class:`~.commands.HelpCommand` implementation that doesn't take as much space, :class:`~.commands.MinimalHelpCommand`. The customisable methods can also be found in the accompanying documentation.
+The library now provides a new more minimalistic :class:`~waifu.HelpCommand` implementation that doesn't take as much space, :class:`~waifu.MinimalHelpCommand`. The customisable methods can also be found in the accompanying documentation.
 
 A frequent request was if you could associate a help command with a cog. The new design allows for dynamically changing of cog through binding it to the :attr:`.HelpCommand.cog` attribute. After this assignment the help command will pretend to be part of the cog and everything should work as expected. When the cog is unloaded then the help command will be "unbound" from the cog.
 
-For example, to implement a :class:`~.commands.HelpCommand` in a cog, the following snippet can be used.
+For example, to implement a :class:`~waifu.HelpCommand` in a cog, the following snippet can be used.
 
 .. code-block:: python3
 
@@ -1009,7 +1009,7 @@ Cog Changes
 
 Cogs have completely been revamped. They are documented in :ref:`ext_commands_cogs` as well.
 
-Cogs are now required to have a base class, :class:`~.commands.Cog` for future proofing purposes. This comes with special methods to customise some behaviour.
+Cogs are now required to have a base class, :class:`~waifu.Cog` for future proofing purposes. This comes with special methods to customise some behaviour.
 
 * :meth:`.Cog.cog_unload`
     - This is called when a cog needs to do some cleanup, such as cancelling a task.
@@ -1024,9 +1024,9 @@ Cogs are now required to have a base class, :class:`~.commands.Cog` for future p
 * :meth:`.Cog.cog_before_invoke` and :meth:`.Cog.cog_after_invoke`
     - A special method that registers a cog before and after invoke hook. More information can be found in :ref:`migrating_1_0_before_after_hook`.
 
-Those that were using listeners, such as ``on_message`` inside a cog will now have to explicitly mark them as such using the :meth:`.commands.Cog.listener` decorator.
+Those that were using listeners, such as ``on_message`` inside a cog will now have to explicitly mark them as such using the :meth:`waifu.Cog.listener` decorator.
 
-Along with that, cogs have gained the ability to have custom names through specifying it in the class definition line. More options can be found in the metaclass that facilitates all this, :class:`.commands.CogMeta`.
+Along with that, cogs have gained the ability to have custom names through specifying it in the class definition line. More options can be found in the metaclass that facilitates all this, :class:`waifu.CogMeta`.
 
 An example cog with every special method registered and a custom name is as follows:
 
@@ -1070,7 +1070,7 @@ Before and After Invocation Hooks
 Commands have gained new before and after invocation hooks that allow you to do an action before and after a command is
 run.
 
-They take a single parameter, :class:`~ext.commands.Context` and they must be a coroutine.
+They take a single parameter, :class:`~extwaifu.Context` and they must be a coroutine.
 
 They are on a global, per-cog, or per-command basis.
 
@@ -1142,12 +1142,12 @@ Converter Changes
 Prior to v1.0, a converter was a type hint that could be a callable that could be invoked
 with a singular argument denoting the argument passed by the user as a string.
 
-This system was eventually expanded to support a :class:`~ext.commands.Converter` system to
-allow plugging in the :class:`~ext.commands.Context` and do more complicated conversions such
-as the built-in "discord" converters.
+This system was eventually expanded to support a :class:`~extwaifu.Converter` system to
+allow plugging in the :class:`~extwaifu.Context` and do more complicated conversions such
+as the built-in "senpai" converters.
 
-In v1.0 this converter system was revamped to allow instances of :class:`~ext.commands.Converter` derived
-classes to be passed. For consistency, the :meth:`~ext.commands.Converter.convert` method was changed to
+In v1.0 this converter system was revamped to allow instances of :class:`~extwaifu.Converter` derived
+classes to be passed. For consistency, the :meth:`~extwaifu.Converter.convert` method was changed to
 always be a coroutine and will now take the two arguments as parameters.
 
 Essentially, before: ::
@@ -1164,9 +1164,9 @@ After: ::
 
 The command framework also got a couple new converters:
 
-- :class:`~ext.commands.clean_content` this is akin to :attr:`Message.clean_content` which scrubs mentions.
-- :class:`~ext.commands.UserConverter` will now appropriately convert :class:`User` only.
+- :class:`~extwaifu.clean_content` this is akin to :attr:`Message.clean_content` which scrubs mentions.
+- :class:`~extwaifu.UserConverter` will now appropriately convert :class:`User` only.
 - ``ChannelConverter`` is now split into two different converters.
 
-    - :class:`~ext.commands.TextChannelConverter` for :class:`TextChannel`.
-    - :class:`~ext.commands.VoiceChannelConverter` for :class:`VoiceChannel`.
+    - :class:`~extwaifu.TextChannelConverter` for :class:`TextChannel`.
+    - :class:`~extwaifu.VoiceChannelConverter` for :class:`VoiceChannel`.

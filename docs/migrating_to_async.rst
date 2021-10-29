@@ -1,6 +1,6 @@
 :orphan:
 
-.. currentmodule:: discord
+.. currentmodule:: senpai
 
 .. _migrating-to-async:
 
@@ -20,14 +20,14 @@ Below are all the other major changes from v0.9.0 to v0.10.0.
 Event Registration
 --------------------
 
-All events before were registered using :meth:`Client.event`. While this is still
+All events before were registered using :meth:`Bunny.event`. While this is still
 possible, the events must be decorated with ``@asyncio.coroutine``.
 
 Before:
 
 .. code-block:: python3
 
-    @client.event
+    @bunny.event
     def on_message(message):
         pass
 
@@ -35,7 +35,7 @@ After:
 
 .. code-block:: python3
 
-    @client.event
+    @bunny.event
     @asyncio.coroutine
     def on_message(message):
         pass
@@ -44,16 +44,16 @@ Or in Python 3.5+:
 
 .. code-block:: python3
 
-    @client.event
+    @bunny.event
     async def on_message(message):
         pass
 
-Because there is a lot of typing, a utility decorator (:meth:`Client.async_event`) is provided
+Because there is a lot of typing, a utility decorator (:meth:`Bunny.async_event`) is provided
 for easier registration. For example:
 
 .. code-block:: python3
 
-    @client.async_event
+    @bunny.async_event
     def on_message(message):
         pass
 
@@ -91,13 +91,13 @@ After:
     def on_socket_raw_send(payload): pass
 
 Note that ``on_status`` was removed. If you want its functionality, use :func:`on_member_update`.
-See :ref:`discord-api-events` for more information. Other removed events include ``on_socket_closed``, ``on_socket_receive``, and ``on_socket_opened``.
+See :ref:`senpai-api-events` for more information. Other removed events include ``on_socket_closed``, ``on_socket_receive``, and ``on_socket_opened``.
 
 
 Coroutines
 -----------
 
-The biggest change that the library went through is that almost every function in :class:`Client`
+The biggest change that the library went through is that almost every function in :class:`Bunny`
 was changed to be a `coroutine <py:library/asyncio-task.html>`_. Functions
 that are marked as a coroutine in the documentation must be awaited from or yielded from in order
 for the computation to be done. For example...
@@ -106,16 +106,16 @@ Before:
 
 .. code-block:: python3
 
-    client.send_message(message.channel, 'Hello')
+    bunny.send_message(message.channel, 'Hello')
 
 After:
 
 .. code-block:: python3
 
-    yield from client.send_message(message.channel, 'Hello')
+    yield from bunny.send_message(message.channel, 'Hello')
 
     # or in python 3.5+
-    await client.send_message(message.channel, 'Hello')
+    await bunny.send_message(message.channel, 'Hello')
 
 In order for you to ``yield from`` or ``await`` a coroutine then your function must be decorated
 with ``@asyncio.coroutine`` or ``async def``.
@@ -130,8 +130,8 @@ sequence functions.
 
 The affected attributes are as follows:
 
-- :attr:`Client.servers`
-- :attr:`Client.private_channels`
+- :attr:`Bunny.servers`
+- :attr:`Bunny.private_channels`
 - :attr:`Server.channels`
 - :attr:`Server.members`
 
@@ -139,7 +139,7 @@ Some examples of previously valid behaviour that is now invalid
 
 .. code-block:: python3
 
-    if client.servers[0].name == "test":
+    if bunny.servers[0].name == "test":
         # do something
 
 Since they are no longer :obj:`list`\s, they no longer support indexing or any operation other than iterating.
@@ -147,7 +147,7 @@ In order to get the old behaviour you should explicitly cast it to a list.
 
 .. code-block:: python3
 
-    servers = list(client.servers)
+    servers = list(bunny.servers)
     # work with servers
 
 .. warning::
@@ -175,12 +175,12 @@ After:
 
 .. code-block:: python3
 
-    server.region == discord.ServerRegion.us_west
-    member.status = discord.Status.online
-    channel.type == discord.ChannelType.text
+    server.region == senpai.ServerRegion.us_west
+    member.status = senpai.Status.online
+    channel.type == senpai.ChannelType.text
 
 The main reason for this change was to reduce the use of finicky strings in the API as this
-could give users a false sense of power. More information can be found in the :ref:`discord-api-enums` page.
+could give users a false sense of power. More information can be found in the :ref:`senpai-api-enums` page.
 
 Properties
 -----------
@@ -222,9 +222,9 @@ Functions that involved banning and kicking were changed.
 +--------------------------------+--------------------------+
 | Before                         | After                    |
 +--------------------------------+--------------------------+
-| ``Client.ban(server, user)``   | ``Client.ban(member)``   |
+| ``Bunny.ban(server, user)``   | ``Bunny.ban(member)``   |
 +--------------------------------+--------------------------+
-| ``Client.kick(server, user)``  | ``Client.kick(member)``  |
+| ``Bunny.kick(server, user)``  | ``Bunny.kick(member)``  |
 +--------------------------------+--------------------------+
 
 .. migrating-renames:
@@ -237,7 +237,7 @@ Functions have been renamed.
 +------------------------------------+-------------------------------------------+
 | Before                             | After                                     |
 +------------------------------------+-------------------------------------------+
-| ``Client.set_channel_permissions`` | :meth:`Client.edit_channel_permissions`   |
+| ``Bunny.set_channel_permissions`` | :meth:`Bunny.edit_channel_permissions`   |
 +------------------------------------+-------------------------------------------+
 
 All the :class:`Permissions` related attributes have been renamed and the `can_` prefix has been
@@ -253,12 +253,12 @@ knowing the argument order and the issues that could arise from them.
 
 The following parameters are now exclusively keyword arguments:
 
-- :meth:`Client.send_message`
+- :meth:`Bunny.send_message`
     - ``tts``
-- :meth:`Client.logs_from`
+- :meth:`Bunny.logs_from`
     - ``before``
     - ``after``
-- :meth:`Client.edit_channel_permissions`
+- :meth:`Bunny.edit_channel_permissions`
     - ``allow``
     - ``deny``
 
@@ -267,31 +267,31 @@ in the function signature.
 
 .. _migrating-running:
 
-Running the Client
+Running the Bunny
 --------------------
 
-In earlier versions of discord.py, ``client.run()`` was a blocking call to the main thread
+In earlier versions of senpai.py, ``bunny.run()`` was a blocking call to the main thread
 that called it. In v0.10.0 it is still a blocking call but it handles the event loop for you.
-However, in order to do that you must pass in your credentials to :meth:`Client.run`.
+However, in order to do that you must pass in your credentials to :meth:`Bunny.run`.
 
 Basically, before:
 
 .. code-block:: python3
 
-    client.login('token')
-    client.run()
+    bunny.login('token')
+    bunny.run()
 
 After:
 
 .. code-block:: python3
 
-    client.run('token')
+    bunny.run('token')
 
 .. warning::
 
-    Like in the older ``Client.run`` function, the newer one must be the one of
+    Like in the older ``Bunny.run`` function, the newer one must be the one of
     the last functions to call. This is because the function is **blocking**. Registering
-    events or doing anything after :meth:`Client.run` will not execute until the function
+    events or doing anything after :meth:`Bunny.run` will not execute until the function
     returns.
 
 This is a utility function that abstracts the event loop for you. There's no need for
@@ -300,21 +300,21 @@ event loop then doing so is quite straightforward:
 
 .. code-block:: python3
 
-    import discord
+    import senpai
     import asyncio
 
-    client = discord.Client()
+    bunny = senpai.Bunny()
 
     @asyncio.coroutine
     def main_task():
-        yield from client.login('token')
-        yield from client.connect()
+        yield from bunny.login('token')
+        yield from bunny.connect()
 
     loop = asyncio.get_event_loop()
     try:
         loop.run_until_complete(main_task())
     except:
-        loop.run_until_complete(client.logout())
+        loop.run_until_complete(bunny.logout())
     finally:
         loop.close()
 

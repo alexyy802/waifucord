@@ -1,4 +1,4 @@
-# Credit to sphinx.ext.extlinks for being a good starter
+# Credit to sphinxuwuuwulinks for being a good starter
 # Copyright 2007-2020 by the Sphinx team
 # Licensed under BSD.
 

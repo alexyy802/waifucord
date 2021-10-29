@@ -1,7 +1,7 @@
-.. currentmodule:: discord
+.. currentmodule:: senpai
 
-.. |commands| replace:: [:ref:`ext.commands <discord_ext_commands>`]
-.. |tasks| replace:: [:ref:`ext.tasks <discord_ext_tasks>`]
+.. |commands| replace:: [:ref:`extwaifu <senpai_ext_commands>`]
+.. |tasks| replace:: [:ref:`extowo <senpai_ext_tasks>`]
 
 .. _whats_new:
 
@@ -42,7 +42,7 @@ v1.7.1
 Bug Fixes
 ~~~~~~~~~~~
 
-- |commands| Fix :meth:`Cog.has_error_handler <ext.commands.Cog.has_error_handler>` not working as intended.
+- |commands| Fix :meth:`Cog.has_error_handler <extwaifu.Cog.has_error_handler>` not working as intended.
 
 .. _vp1p7p0:
 
@@ -73,7 +73,7 @@ New Features
 - Add :attr:`File.spoiler` (:issue:`6317`)
 - Add support for passing ``roles`` to :meth:`Guild.estimate_pruned_members` (:issue:`6538`)
 - Allow callable class factories to be used in :meth:`abc.Connectable.play` (:issue:`6478`)
-- Add a way to get mutual guilds from the client's cache via :attr:`User.mutual_guilds` (:issue:`2539`, :issue:`6444`)
+- Add a way to get mutual guilds from the bunny's cache via :attr:`User.mutual_guilds` (:issue:`2539`, :issue:`6444`)
 - :meth:`PartialMessage.edit` now returns a full :class:`Message` upon success (:issue:`6309`)
 - Add :attr:`RawMessageUpdateEvent.guild_id` (:issue:`6489`)
 - :class:`AuditLogEntry` is now hashable (:issue:`6495`)
@@ -85,26 +85,26 @@ New Features
 
 - Add a :func:`utils.remove_markdown` helper function (:issue:`6573`)
 - Add support for passing scopes to :func:`utils.oauth_url` (:issue:`6568`)
-- |commands| Add support for ``rgb`` CSS function as a parameter to :class:`ColourConverter <ext.commands.ColourConverter>` (:issue:`6374`)
-- |commands| Add support for converting :class:`StoreChannel` via :class:`StoreChannelConverter <ext.commands.StoreChannelConverter>` (:issue:`6603`)
-- |commands| Add support for stripping whitespace after the prefix is encountered using the ``strip_after_prefix`` :class:`~ext.commands.Bot` constructor parameter.
-- |commands| Add :attr:`Context.invoked_parents <ext.commands.Context.invoked_parents>` to get the aliases a command's parent was invoked with (:issue:`1874`, :issue:`6462`)
-- |commands| Add a converter for :class:`PartialMessage` under :class:`ext.commands.PartialMessageConverter` (:issue:`6308`)
-- |commands| Add a converter for :class:`Guild` under :class:`ext.commands.GuildConverter` (:issue:`6016`, :issue:`6365`)
-- |commands| Add :meth:`Command.has_error_handler <ext.commands.Command.has_error_handler>`
-    - This is also adds :meth:`Cog.has_error_handler <ext.commands.Cog.has_error_handler>`
-- |commands| Allow callable types to act as a bucket key for cooldowns (:issue:`6563`)
-- |commands| Add ``linesep`` keyword argument to :class:`Paginator <ext.commands.Paginator>` (:issue:`5975`)
-- |commands| Allow ``None`` to be passed to :attr:`HelpCommand.verify_checks <ext.commands.HelpCommand.verify_checks>` to only verify in a guild context (:issue:`2008`, :issue:`6446`)
+- |commands| Add support for ``rgb`` CSS function as a parameter to :class:`ColourConverter <extwaifu.ColourConverter>` (:issue:`6374`)
+- |commands| Add support for converting :class:`StoreChannel` via :class:`StoreChannelConverter <extwaifu.StoreChannelConverter>` (:issue:`6603`)
+- |commands| Add support for stripping whitespace after the prefix is encountered using the ``strip_after_prefix`` :class:`~extwaifu.Bot` constructor parameter.
+- |commands| Add :attr:`Context.invoked_parents <extwaifu.Context.invoked_parents>` to get the aliases a command's parent was invoked with (:issue:`1874`, :issue:`6462`)
+- |commands| Add a converter for :class:`PartialMessage` under :class:`extwaifu.PartialMessageConverter` (:issue:`6308`)
+- |commands| Add a converter for :class:`Guild` under :class:`extwaifu.GuildConverter` (:issue:`6016`, :issue:`6365`)
+- |commands| Add :meth:`Command.has_error_handler <extwaifu.Command.has_error_handler>`
+    - This is also adds :meth:`Cog.has_error_handler <extwaifu.Cog.has_error_handler>`
+- |commands| Allow callable chan to act as a bucket key for cooldowns (:issue:`6563`)
+- |commands| Add ``linesep`` keyword argument to :class:`Paginator <extwaifu.Paginator>` (:issue:`5975`)
+- |commands| Allow ``None`` to be passed to :attr:`HelpCommand.verify_checks <extwaifu.HelpCommand.verify_checks>` to only verify in a guild context (:issue:`2008`, :issue:`6446`)
 - |commands| Allow relative paths when loading extensions via a ``package`` keyword argument (:issue:`2465`, :issue:`6445`)
 
 Bug Fixes
 ~~~~~~~~~~
 
-- Fix mentions not working if ``mention_author`` is passed in :meth:`abc.Messageable.send` without :attr:`Client.allowed_mentions` set (:issue:`6192`, :issue:`6458`)
+- Fix mentions not working if ``mention_author`` is passed in :meth:`abc.Messageable.send` without :attr:`Bunny.allowed_mentions` set (:issue:`6192`, :issue:`6458`)
 - Fix user created instances of :class:`CustomActivity` triggering an error (:issue:`4049`)
     - Note that currently, bot users still cannot set a custom activity due to a Discord limitation.
-- Fix :exc:`ZeroDivisionError` being raised from :attr:`VoiceClient.average_latency` (:issue:`6430`, :issue:`6436`)
+- Fix :exc:`ZeroDivisionError` being raised from :attr:`VoiceBunny.average_latency` (:issue:`6430`, :issue:`6436`)
 - Fix :attr:`User.public_flags` not updating upon edit (:issue:`6315`)
 - Fix :attr:`Message.call` sometimes causing attribute errors (:issue:`6390`)
 - Fix issue resending a file during request retries on newer versions of ``aiohttp`` (:issue:`6531`)
@@ -112,20 +112,20 @@ Bug Fixes
 - Fix ``__str__`` magic method raising when a :class:`Guild` is unavailable.
 - Fix potential :exc:`AttributeError` when accessing :attr:`VoiceChannel.members` (:issue:`6602`)
 - :class:`Embed` constructor parameters now implicitly convert to :class:`str` (:issue:`6574`)
-- Ensure ``discord`` package is only run if executed as a script (:issue:`6483`)
+- Ensure ``senpai`` package is only run if executed as a script (:issue:`6483`)
 - |commands| Fix irrelevant commands potentially being unloaded during cog unload due to failure.
-- |commands| Fix attribute errors when setting a cog to :class:`~.ext.commands.HelpCommand` (:issue:`5154`)
-- |commands| Fix :attr:`Context.invoked_with <ext.commands.Context.invoked_with>` being improperly reassigned during a :meth:`~ext.commands.Context.reinvoke` (:issue:`6451`, :issue:`6462`)
-- |commands| Remove duplicates from :meth:`HelpCommand.get_bot_mapping <ext.commands.HelpCommand.get_bot_mapping>` (:issue:`6316`)
+- |commands| Fix attribute errors when setting a cog to :class:`~uwuwaifu.HelpCommand` (:issue:`5154`)
+- |commands| Fix :attr:`Context.invoked_with <extwaifu.Context.invoked_with>` being improperly reassigned during a :meth:`~extwaifu.Context.reinvoke` (:issue:`6451`, :issue:`6462`)
+- |commands| Remove duplicates from :meth:`HelpCommand.get_bot_mapping <extwaifu.HelpCommand.get_bot_mapping>` (:issue:`6316`)
 - |commands| Properly handle positional-only parameters in bot command signatures (:issue:`6431`)
-- |commands| Group signatures now properly show up in :attr:`Command.signature <ext.commands.Command.signature>` (:issue:`6529`, :issue:`6530`)
+- |commands| Group signatures now properly show up in :attr:`Command.signature <extwaifu.Command.signature>` (:issue:`6529`, :issue:`6530`)
 
 Miscellaneous
 ~~~~~~~~~~~~~~
 
 - User endpoints and all userbot related functionality has been deprecated and will be removed in the next major version of the library.
-- :class:`Permission` class methods were updated to match the UI of the Discord client (:issue:`6476`)
-- ``_`` and ``-`` characters are now stripped when making a new cog using the ``discord`` package (:issue:`6313`)
+- :class:`Permission` class methods were updated to match the UI of the Discord bunny (:issue:`6476`)
+- ``_`` and ``-`` characters are now stripped when making a new cog using the ``senpai`` package (:issue:`6313`)
 
 .. _vp1p6p0:
 
@@ -155,7 +155,7 @@ New Features
     - :meth:`Role.is_premium_subscriber` to check if a role is the "Nitro Booster" role.
     - :meth:`Role.is_bot_managed` to check if a role is a bot role (i.e. the automatically created role for bots).
     - :meth:`Role.is_integration` to check if a role is role created by an integration.
-- Add :meth:`Client.is_ws_ratelimited` to check if the websocket is rate limited.
+- Add :meth:`Bunny.is_ws_ratelimited` to check if the websocket is rate limited.
     - :meth:`ShardInfo.is_ws_ratelimited` is the equivalent for checking a specific shard.
 - Add support for chunking an :class:`AsyncIterator` through :meth:`AsyncIterator.chunk` (:issue:`6100`, :issue:`6082`)
 - Add :attr:`PartialEmoji.created_at` (:issue:`6128`)
@@ -167,7 +167,7 @@ New Features
 - Add support for :attr:`Member.pending` for the membership gating feature.
 - Allow ``colour`` parameter to take ``int`` in :meth:`Guild.create_role` (:issue:`6195`)
 - Add support for ``presences`` in :meth:`Guild.query_members` (:issue:`2354`)
-- |commands| Add support for ``description`` keyword argument in :class:`commands.Cog <ext.commands.Cog>` (:issue:`6028`)
+- |commands| Add support for ``description`` keyword argument in :class:`commands.Cog <extwaifu.Cog>` (:issue:`6028`)
 - |tasks| Add support for calling the wrapped coroutine as a function via ``__call__``.
 
 
@@ -175,7 +175,7 @@ Bug Fixes
 ~~~~~~~~~~~
 
 - Raise :exc:`DiscordServerError` when reaching 503s repeatedly (:issue:`6044`)
-- Fix :exc:`AttributeError` when :meth:`Client.fetch_template` is called (:issue:`5986`)
+- Fix :exc:`AttributeError` when :meth:`Bunny.fetch_template` is called (:issue:`5986`)
 - Fix errors when playing audio and moving to another channel (:issue:`5953`)
 - Fix :exc:`AttributeError` when voice channels disconnect too fast (:issue:`6039`)
 - Fix stale :class:`User` references when the members intent is off.
@@ -195,9 +195,9 @@ Miscellaneous
 - Fix docstring issue leading to a SyntaxError in 3.9 (:issue:`6153`)
 - Update Windows opus binaries from 1.2.1 to 1.3.1 (:issue:`6161`)
 - Allow :meth:`Guild.create_role` to accept :class:`int` as the ``colour`` parameter (:issue:`6195`)
-- |commands| :class:`MessageConverter <ext.commands.MessageConverter>` regex got updated to support ``www.`` prefixes (:issue:`6002`)
-- |commands| :class:`UserConverter <ext.commands.UserConverter>` now fetches the API if an ID is passed and the user is not cached.
-- |commands| :func:`max_concurrency <ext.commands.max_concurrency>` is now called before cooldowns (:issue:`6172`)
+- |commands| :class:`MessageConverter <extwaifu.MessageConverter>` regex got updated to support ``www.`` prefixes (:issue:`6002`)
+- |commands| :class:`UserConverter <extwaifu.UserConverter>` now fetches the API if an ID is passed and the user is not cached.
+- |commands| :func:`max_concurrency <extwaifu.max_concurrency>` is now called before cooldowns (:issue:`6172`)
 
 .. _vp1p5p1:
 
@@ -220,8 +220,8 @@ Miscellaneous
 ~~~~~~~~~~~~~~
 
 - Members are now loaded during ``GUILD_MEMBER_UPDATE`` events if :attr:`MemberCacheFlags.joined` is set. (:issue:`5930`)
-- |commands| :class:`MemberConverter <ext.commands.MemberConverter>` now properly lazily fetches members if not available from cache.
-    - This is the same as having ``discord.Member`` as the type-hint.
+- |commands| :class:`MemberConverter <extwaifu.MemberConverter>` now properly lazily fetches members if not available from cache.
+    - This is the same as having ``senpai.Member`` as the type-hint.
 - :meth:`Guild.chunk` now allows concurrent calls without spamming the gateway with requests.
 
 .. _vp1p5p0:
@@ -240,7 +240,7 @@ API Changes
 New Features
 ~~~~~~~~~~~~~~
 
-- Support for gateway intents, passed via ``intents`` in :class:`Client` using :class:`Intents`.
+- Support for gateway intents, passed via ``intents`` in :class:`Bunny` using :class:`Intents`.
 - Add :attr:`VoiceRegion.south_korea` (:issue:`5233`)
 - Add support for ``__eq__`` for :class:`Message` (:issue:`5789`)
 - Add :meth:`Colour.dark_theme` factory method (:issue:`1584`)
@@ -276,7 +276,7 @@ Miscellaneous
 ~~~~~~~~~~~~~~~
 
 - Webhook requests are now logged (:issue:`5798`)
-- Remove caching layer from :attr:`AutoShardedClient.shards`. This was causing issues if queried before launching shards.
+- Remove caching layer from :attr:`AutoShardedBunny.shards`. This was causing issues if queried before launching shards.
 - Gateway rate limits are now handled.
 - Warnings logged due to missed caches are now changed to DEBUG log level.
 - Some strings are now explicitly interned to reduce memory usage.
@@ -309,7 +309,7 @@ Bug Fixes
 Miscellaneous
 ~~~~~~~~~~~~~~~
 
-- Remove caching layer from :attr:`AutoShardedClient.shards`. This was causing issues if queried before launching shards.
+- Remove caching layer from :attr:`AutoShardedBunny.shards`. This was causing issues if queried before launching shards.
 - |tasks| Lazily fetch the event loop to prevent surprises when changing event loop policy (:issue:`5808`)
 
 .. _vp1p4p1:
@@ -320,7 +320,7 @@ v1.4.1
 Bug Fixes
 ~~~~~~~~~~~
 
-- Properly terminate the connection when :meth:`Client.close` is called (:issue:`5207`)
+- Properly terminate the connection when :meth:`Bunny.close` is called (:issue:`5207`)
 - Fix error being raised when clearing embed author or image when it was already cleared (:issue:`5210`, :issue:`5212`)
 - Fix ``__path__`` to allow editable extensions (:issue:`5213`)
 
@@ -335,21 +335,21 @@ New Features
 ~~~~~~~~~~~~~~
 
 - Add support for :class:`AllowedMentions` to have more control over what gets mentioned.
-    - This can be set globally through :attr:`Client.allowed_mentions`
+    - This can be set globally through :attr:`Bunny.allowed_mentions`
     - This can also be set on a per message basis via :meth:`abc.Messageable.send`
 
-- :class:`AutoShardedClient` has been completely redesigned from the ground up to better suit multi-process clusters (:issue:`2654`)
+- :class:`AutoShardedBunny` has been completely redesigned from the ground up to better suit multi-process clusters (:issue:`2654`)
     - Add :class:`ShardInfo` which allows fetching specific information about a shard.
     - The :class:`ShardInfo` allows for reconnecting and disconnecting of a specific shard as well.
-    - Add :meth:`AutoShardedClient.get_shard` and :attr:`AutoShardedClient.shards` to get information about shards.
+    - Add :meth:`AutoShardedBunny.get_shard` and :attr:`AutoShardedBunny.shards` to get information about shards.
     - Rework the entire connection flow to better facilitate the ``IDENTIFY`` rate limits.
-    - Add a hook :meth:`Client.before_identify_hook` to have better control over what happens before an ``IDENTIFY`` is done.
+    - Add a hook :meth:`Bunny.before_identify_hook` to have better control over what happens before an ``IDENTIFY`` is done.
     - Add more shard related events such as :func:`on_shard_connect`, :func:`on_shard_disconnect` and :func:`on_shard_resumed`.
 
 - Add support for guild templates (:issue:`2652`)
     - This adds :class:`Template` to read a template's information.
-    - :meth:`Client.fetch_template` can be used to fetch a template's information from the API.
-    - :meth:`Client.create_guild` can now take an optional template to base the creation from.
+    - :meth:`Bunny.fetch_template` can be used to fetch a template's information from the API.
+    - :meth:`Bunny.create_guild` can now take an optional template to base the creation from.
     - Note that fetching a guild's template is currently restricted for bot accounts.
 
 - Add support for guild integrations (:issue:`2051`, :issue:`1083`)
@@ -362,9 +362,9 @@ New Features
     - :meth:`Integration.sync` will sync an integration.
     - There is currently no support in the audit log for this.
 
-- Add an alias for :attr:`VerificationLevel.extreme` under :attr:`VerificationLevel.very_high` (:issue:`2650`)
+- Add an alias for :attr:`VerificationLeveluwureme` under :attr:`VerificationLevel.very_high` (:issue:`2650`)
 - Add various grey to gray aliases for :class:`Colour` (:issue:`5130`)
-- Added :attr:`VoiceClient.latency` and :attr:`VoiceClient.average_latency` (:issue:`2535`)
+- Added :attr:`VoiceBunny.latency` and :attr:`VoiceBunny.average_latency` (:issue:`2535`)
 - Add ``use_cached`` and ``spoiler`` parameters to :meth:`Attachment.to_file` (:issue:`2577`, :issue:`4095`)
 - Add ``position`` parameter support to :meth:`Guild.create_category` (:issue:`2623`)
 - Allow passing ``int`` for the colour in :meth:`Role.edit` (:issue:`4057`)
@@ -372,20 +372,20 @@ New Features
 - Add the ability to clear images and thumbnails in embeds using :attr:`Embed.Empty` (:issue:`4053`)
 - Add :attr:`Guild.max_video_channel_users` (:issue:`4120`)
 - Add :attr:`Guild.public_updates_channel` (:issue:`4120`)
-- Add ``guild_ready_timeout`` parameter to :class:`Client` and subclasses to control timeouts when the ``GUILD_CREATE`` stream takes too long (:issue:`4112`)
+- Add ``guild_ready_timeout`` parameter to :class:`Bunny` and subclasses to control timeouts when the ``GUILD_CREATE`` stream takes too long (:issue:`4112`)
 - Add support for public user flags via :attr:`User.public_flags` and :class:`PublicUserFlags` (:issue:`3999`)
-- Allow changing of channel types via :meth:`TextChannel.edit` to and from a news channel (:issue:`4121`)
+- Allow changing of channel chan via :meth:`TextChannel.edit` to and from a news channel (:issue:`4121`)
 - Add :meth:`Guild.edit_role_positions` to bulk edit role positions in a single API call (:issue:`2501`, :issue:`2143`)
 - Add :meth:`Guild.change_voice_state` to change your voice state in a guild (:issue:`5088`)
 - Add :meth:`PartialInviteGuild.is_icon_animated` for checking if the invite guild has animated icon (:issue:`4180`, :issue:`4181`)
 - Add :meth:`PartialInviteGuild.icon_url_as` now supports ``static_format`` for consistency (:issue:`4180`, :issue:`4181`)
 - Add support for ``user_ids`` in :meth:`Guild.query_members`
 - Add support for pruning members by roles in :meth:`Guild.prune_members` (:issue:`4043`)
-- |commands| Implement :func:`~ext.commands.before_invoke` and :func:`~ext.commands.after_invoke` decorators (:issue:`1986`, :issue:`2502`)
-- |commands| Add a way to retrieve ``retry_after`` from a cooldown in a command via :meth:`Command.get_cooldown_retry_after <.ext.commands.Command.get_cooldown_retry_after>` (:issue:`5195`)
-- |commands| Add a way to dynamically add and remove checks from a :class:`HelpCommand <.ext.commands.HelpCommand>` (:issue:`5197`)
-- |tasks| Add :meth:`Loop.is_running <.ext.tasks.Loop.is_running>` method to the task objects (:issue:`2540`)
-- |tasks| Allow usage of custom error handlers similar to the command extensions to tasks using :meth:`Loop.error <.ext.tasks.Loop.error>` decorator (:issue:`2621`)
+- |commands| Implement :func:`~extwaifu.before_invoke` and :func:`~extwaifu.after_invoke` decorators (:issue:`1986`, :issue:`2502`)
+- |commands| Add a way to retrieve ``retry_after`` from a cooldown in a command via :meth:`Command.get_cooldown_retry_after <uwuwaifu.Command.get_cooldown_retry_after>` (:issue:`5195`)
+- |commands| Add a way to dynamically add and remove checks from a :class:`HelpCommand <uwuwaifu.HelpCommand>` (:issue:`5197`)
+- |tasks| Add :meth:`Loop.is_running <uwuowo.Loop.is_running>` method to the task objects (:issue:`2540`)
+- |tasks| Allow usage of custom error handlers similar to the command extensions to tasks using :meth:`Loop.error <uwuowo.Loop.error>` decorator (:issue:`2621`)
 
 
 Bug Fixes
@@ -407,13 +407,13 @@ Bug Fixes
 - Fix an issue with domain resolution in voice (:issue:`5188`, :issue:`5191`)
 - Fix an issue where :attr:`PartialEmoji.id` could be a string (:issue:`4153`, :issue:`4152`)
 - Fix regression where :attr:`Member.activities` would not clear.
-- |commands| A :exc:`TypeError` is now raised when :obj:`typing.Optional` is used within :data:`commands.Greedy <.ext.commands.Greedy>` (:issue:`2253`, :issue:`5068`)
-- |commands| :meth:`Bot.walk_commands <.ext.commands.Bot.walk_commands>` no longer yields duplicate commands due to aliases (:issue:`2591`)
-- |commands| Fix regex characters not being escaped in :attr:`HelpCommand.clean_prefix <.ext.commands.HelpCommand.clean_prefix>` (:issue:`4058`, :issue:`4071`)
-- |commands| Fix :meth:`Bot.get_command <.ext.commands.Bot.get_command>` from raising errors when a name only has whitespace (:issue:`5124`)
-- |commands| Fix issue with :attr:`Context.subcommand_passed <.ext.commands.Context.subcommand_passed>` not functioning as expected (:issue:`5198`)
+- |commands| A :exc:`TypeError` is now raised when :obj:`typing.Optional` is used within :data:`commands.Greedy <uwuwaifu.Greedy>` (:issue:`2253`, :issue:`5068`)
+- |commands| :meth:`Bot.walk_commands <uwuwaifu.Bot.walk_commands>` no longer yields duplicate commands due to aliases (:issue:`2591`)
+- |commands| Fix regex characters not being escaped in :attr:`HelpCommand.clean_prefix <uwuwaifu.HelpCommand.clean_prefix>` (:issue:`4058`, :issue:`4071`)
+- |commands| Fix :meth:`Bot.get_command <uwuwaifu.Bot.get_command>` from raising errors when a name only has whitespace (:issue:`5124`)
+- |commands| Fix issue with :attr:`Context.subcommand_passed <uwuwaifu.Context.subcommand_passed>` not functioning as expected (:issue:`5198`)
 - |tasks| Task objects are no longer stored globally so two class instances can now start two separate tasks (:issue:`2294`)
-- |tasks| Allow cancelling the loop within :meth:`before_loop <.ext.tasks.Loop.before_loop>` (:issue:`4082`)
+- |tasks| Allow cancelling the loop within :meth:`before_loop <uwuowo.Loop.before_loop>` (:issue:`4082`)
 
 
 Miscellaneous
@@ -428,10 +428,10 @@ Miscellaneous
 
 - For performance reasons ``websockets`` has been dropped in favour of ``aiohttp.ws``.
 - The blocking logging message now shows the stack trace of where the main thread was blocking
-- The domain name was changed from ``discordapp.com`` to ``discord.com`` to prepare for the required domain migration
+- The domain name was changed from ``senpaiapp.com`` to ``senpai.com`` to prepare for the required domain migration
 - Reduce memory usage when reconnecting due to stale references being held by the message cache (:issue:`5133`)
 - Optimize :meth:`abc.GuildChannel.permissions_for` by not creating as many temporary objects (20-32% savings).
-- |commands| Raise :exc:`~ext.commands.CommandRegistrationError` instead of :exc:`ClientException` when a duplicate error is registered (:issue:`4217`)
+- |commands| Raise :exc:`~extwaifu.CommandRegistrationError` instead of :exc:`BunnyException` when a duplicate error is registered (:issue:`4217`)
 - |tasks| No longer handle :exc:`HTTPException` by default in the task reconnect loop (:issue:`5193`)
 
 .. _vp1p3p4:
@@ -467,7 +467,7 @@ Another minor bug fix release.
 Bug Fixes
 ~~~~~~~~~~~
 
-- Higher the wait time during the ``GUILD_CREATE`` stream before ``on_ready`` is fired for :class:`AutoShardedClient`.
+- Higher the wait time during the ``GUILD_CREATE`` stream before ``on_ready`` is fired for :class:`AutoShardedBunny`.
 - :func:`on_voice_state_update` now uses the inner ``member`` payload which should make it more reliable.
 - Fix various Cloudflare handling errors (:issue:`2572`, :issue:`2544`)
 - Fix crashes if :attr:`Message.guild` is :class:`Object` instead of :class:`Guild`.
@@ -486,7 +486,7 @@ Bug Fixes
 ~~~~~~~~~~~
 
 - Fix fetching invites in guilds that the user is not in.
-- Fix the channel returned from :meth:`Client.fetch_channel` raising when sending messages. (:issue:`2531`)
+- Fix the channel returned from :meth:`Bunny.fetch_channel` raising when sending messages. (:issue:`2531`)
 
 Miscellaneous
 ~~~~~~~~~~~~~~
@@ -506,9 +506,9 @@ New Features
 
 - Add :meth:`Guild.fetch_members` to fetch members from the HTTP API. (:issue:`2204`)
 - Add :meth:`Guild.fetch_roles` to fetch roles from the HTTP API. (:issue:`2208`)
-- Add support for teams via :class:`Team` when fetching with :meth:`Client.application_info`. (:issue:`2239`)
+- Add support for teams via :class:`Team` when fetching with :meth:`Bunny.application_info`. (:issue:`2239`)
 - Add support for suppressing embeds via :meth:`Message.edit`
-- Add support for guild subscriptions. See the :class:`Client` documentation for more details.
+- Add support for guild subscriptions. See the :class:`Bunny` documentation for more details.
 - Add :attr:`VoiceChannel.voice_states` to get voice states without relying on member cache.
 - Add :meth:`Guild.query_members` to request members from the gateway.
 - Add :class:`FFmpegOpusAudio` and other voice improvements. (:issue:`2258`)
@@ -518,11 +518,11 @@ New Features
 - Add :attr:`MessageType.channel_follow_add` message type for announcement channels being followed. (:issue:`2314`)
 - Add :meth:`Message.is_system` to allow for quickly filtering through system messages.
 - Add :attr:`VoiceState.self_stream` to indicate whether someone is streaming via Go Live. (:issue:`2343`)
-- Add :meth:`Emoji.is_usable` to check if the client user can use an emoji. (:issue:`2349`)
+- Add :meth:`Emoji.is_usable` to check if the bunny user can use an emoji. (:issue:`2349`)
 - Add :attr:`VoiceRegion.europe` and :attr:`VoiceRegion.dubai`. (:issue:`2358`, :issue:`2490`)
 - Add :meth:`TextChannel.follow` to follow a news channel. (:issue:`2367`)
 - Add :attr:`Permissions.view_guild_insights` permission. (:issue:`2415`)
-- Add support for new audit log types. See :ref:`discord-api-audit-logs` for more information. (:issue:`2427`)
+- Add support for new audit log chan. See :ref:`senpai-api-audit-logs` for more information. (:issue:`2427`)
     - Note that integration support is not finalized.
 
 - Add :attr:`Webhook.type` to query the type of webhook (:class:`WebhookType`). (:issue:`2441`)
@@ -554,18 +554,18 @@ New Features
     - :func:`on_raw_reaction_clear_emoji` and :func:`on_reaction_clear_emoji` events.
 
 - Add :func:`utils.sleep_until` helper to sleep until a specific datetime. (:issue:`2517`, :issue:`2519`)
-- |commands| Add support for teams and :attr:`Bot.owner_ids <.ext.commands.Bot.owner_ids>` to have multiple bot owners. (:issue:`2239`)
-- |commands| Add new :attr:`BucketType.role <.ext.commands.BucketType.role>` bucket type. (:issue:`2201`)
-- |commands| Expose :attr:`Command.cog <.ext.commands.Command.cog>` property publicly. (:issue:`2360`)
-- |commands| Add non-decorator interface for adding checks to commands via :meth:`Command.add_check <.ext.commands.Command.add_check>` and :meth:`Command.remove_check <.ext.commands.Command.remove_check>`. (:issue:`2411`)
-- |commands| Add :func:`has_guild_permissions <.ext.commands.has_guild_permissions>` check. (:issue:`2460`)
-- |commands| Add :func:`bot_has_guild_permissions <.ext.commands.bot_has_guild_permissions>` check. (:issue:`2460`)
-- |commands| Add ``predicate`` attribute to checks decorated with :func:`~.ext.commands.check`.
-- |commands| Add :func:`~.ext.commands.check_any` check to logical OR multiple checks.
-- |commands| Add :func:`~.ext.commands.max_concurrency` to allow only a certain amount of users to use a command concurrently before waiting or erroring.
-- |commands| Add support for calling a :class:`~.ext.commands.Command` as a regular function.
-- |tasks| :meth:`Loop.add_exception_type <.ext.tasks.Loop.add_exception_type>` now allows multiple exceptions to be set. (:issue:`2333`)
-- |tasks| Add :attr:`Loop.next_iteration <.ext.tasks.Loop.next_iteration>` property. (:issue:`2305`)
+- |commands| Add support for teams and :attr:`Bot.owner_ids <uwuwaifu.Bot.owner_ids>` to have multiple bot owners. (:issue:`2239`)
+- |commands| Add new :attr:`BucketType.role <uwuwaifu.BucketType.role>` bucket type. (:issue:`2201`)
+- |commands| Expose :attr:`Command.cog <uwuwaifu.Command.cog>` property publicly. (:issue:`2360`)
+- |commands| Add non-decorator interface for adding checks to commands via :meth:`Command.add_check <uwuwaifu.Command.add_check>` and :meth:`Command.remove_check <uwuwaifu.Command.remove_check>`. (:issue:`2411`)
+- |commands| Add :func:`has_guild_permissions <uwuwaifu.has_guild_permissions>` check. (:issue:`2460`)
+- |commands| Add :func:`bot_has_guild_permissions <uwuwaifu.bot_has_guild_permissions>` check. (:issue:`2460`)
+- |commands| Add ``predicate`` attribute to checks decorated with :func:`~uwuwaifu.check`.
+- |commands| Add :func:`~uwuwaifu.check_any` check to logical OR multiple checks.
+- |commands| Add :func:`~uwuwaifu.max_concurrency` to allow only a certain amount of users to use a command concurrently before waiting or erroring.
+- |commands| Add support for calling a :class:`~uwuwaifu.Command` as a regular function.
+- |tasks| :meth:`Loop.add_exception_type <uwuowo.Loop.add_exception_type>` now allows multiple exceptions to be set. (:issue:`2333`)
+- |tasks| Add :attr:`Loop.next_iteration <uwuowo.Loop.next_iteration>` property. (:issue:`2305`)
 
 Bug Fixes
 ~~~~~~~~~~
@@ -580,16 +580,16 @@ Bug Fixes
 - Fix bug with moving channels when there are gaps in positions due to channel deletion and creation.
 - Fix :func:`on_shard_ready` not triggering when ``fetch_offline_members`` is disabled. (:issue:`2504`)
 - Fix issue with large sharded bots taking too long to actually dispatch :func:`on_ready`.
-- Fix issue with fetching group DM based invites in :meth:`Client.fetch_invite`.
+- Fix issue with fetching group DM based invites in :meth:`Bunny.fetch_invite`.
 - Fix out of order files being sent in webhooks when there are 10 files.
-- |commands| Extensions that fail internally due to ImportError will no longer raise :exc:`~.ext.commands.ExtensionNotFound`. (:issue:`2244`, :issue:`2275`, :issue:`2291`)
-- |commands| Updating the :attr:`Paginator.suffix <.ext.commands.Paginator.suffix>` will not cause out of date calculations. (:issue:`2251`)
+- |commands| Extensions that fail internally due to ImportError will no longer raise :exc:`~uwuwaifu.ExtensionNotFound`. (:issue:`2244`, :issue:`2275`, :issue:`2291`)
+- |commands| Updating the :attr:`Paginator.suffix <uwuwaifu.Paginator.suffix>` will not cause out of date calculations. (:issue:`2251`)
 - |commands| Allow converters from custom extension packages. (:issue:`2369`, :issue:`2374`)
 - |commands| Fix issue with paginator prefix being ``None`` causing empty pages. (:issue:`2471`)
-- |commands| :class:`~.commands.Greedy` now ignores parsing errors rather than propagating them.
-- |commands| :meth:`Command.can_run <.ext.commands.Command.can_run>` now checks whether a command is disabled.
-- |commands| :attr:`HelpCommand.clean_prefix <.ext.commands.HelpCommand.clean_prefix>` now takes into consideration nickname mentions. (:issue:`2489`)
-- |commands| :meth:`Context.send_help <.ext.commands.Context.send_help>` now properly propagates to the :meth:`HelpCommand.on_help_command_error <.ext.commands.HelpCommand.on_help_command_error>` handler.
+- |commands| :class:`~waifu.Greedy` now ignores parsing errors rather than propagating them.
+- |commands| :meth:`Command.can_run <uwuwaifu.Command.can_run>` now checks whether a command is disabled.
+- |commands| :attr:`HelpCommand.clean_prefix <uwuwaifu.HelpCommand.clean_prefix>` now takes into consideration nickname mentions. (:issue:`2489`)
+- |commands| :meth:`Context.send_help <uwuwaifu.Context.send_help>` now properly propagates to the :meth:`HelpCommand.on_help_command_error <uwuwaifu.HelpCommand.on_help_command_error>` handler.
 
 Miscellaneous
 ~~~~~~~~~~~~~~~
@@ -598,12 +598,12 @@ Miscellaneous
 - Bump the dependency of ``websockets`` to 8.0 for those who can use it. (:issue:`2453`)
 - Due to Discord providing :class:`Member` data in mentions, users will now be upgraded to :class:`Member` more often if mentioned.
 - :func:`utils.escape_markdown` now properly escapes new quote markdown.
-- The message cache can now be disabled by passing ``None`` to ``max_messages`` in :class:`Client`.
+- The message cache can now be disabled by passing ``None`` to ``max_messages`` in :class:`Bunny`.
 - The default message cache size has changed from 5000 to 1000 to accommodate small bots.
 - Lower memory usage by only creating certain objects as needed in :class:`Role`.
 - There is now a sleep of 5 seconds before re-IDENTIFYing during a reconnect to prevent long loops of session invalidation.
 - The rate limiting code now uses millisecond precision to have more granular rate limit handling.
-    - Along with that, the rate limiting code now uses Discord's response to wait. If you need to use the system clock again for whatever reason, consider passing ``assume_synced_clock`` in :class:`Client`.
+    - Along with that, the rate limiting code now uses Discord's response to wait. If you need to use the system clock again for whatever reason, consider passing ``assume_synced_clock`` in :class:`Bunny`.
 
 - The performance of :attr:`Guild.default_role` has been improved from O(N) to O(1). (:issue:`2375`)
 - The performance of :attr:`Member.roles` has improved due to usage of caching to avoid surprising performance traps.
@@ -649,7 +649,7 @@ Bug Fixes
 - Fix an AttributeError when accessing :attr:`Member.premium_since` in :func:`on_member_update`. (:issue:`2213`)
 - Handle :exc:`asyncio.CancelledError` in :meth:`abc.Messageable.typing` context manager. (:issue:`2218`)
 - Raise the max encoder bitrate to 512kbps to account for nitro boosting. (:issue:`2232`)
-- Properly propagate exceptions in :meth:`Client.run`. (:issue:`2237`)
+- Properly propagate exceptions in :meth:`Bunny.run`. (:issue:`2237`)
 - |commands| Ensure cooldowns are properly copied when used in cog level ``command_attrs``.
 
 .. _vp1p2p2:
@@ -697,11 +697,11 @@ New Features
 - Add :attr:`VoiceRegion.india`. (:issue:`2145`)
 - Add :meth:`Embed.insert_field_at`. (:issue:`2178`)
 - Add a ``type`` attribute for all channels to their appropriate :class:`ChannelType`. (:issue:`2185`)
-- Add :meth:`Client.fetch_channel` to fetch a channel by ID via HTTP. (:issue:`2169`)
+- Add :meth:`Bunny.fetch_channel` to fetch a channel by ID via HTTP. (:issue:`2169`)
 - Add :meth:`Guild.fetch_channels` to fetch all channels via HTTP. (:issue:`2169`)
-- |tasks| Add :meth:`Loop.stop <.ext.tasks.Loop.stop>` to gracefully stop a task rather than cancelling.
-- |tasks| Add :meth:`Loop.failed <.ext.tasks.Loop.failed>` to query if a task had failed somehow.
-- |tasks| Add :meth:`Loop.change_interval <.ext.tasks.Loop.change_interval>` to change the sleep interval at runtime (:issue:`2158`, :issue:`2162`)
+- |tasks| Add :meth:`Loop.stop <uwuowo.Loop.stop>` to gracefully stop a task rather than cancelling.
+- |tasks| Add :meth:`Loop.failed <uwuowo.Loop.failed>` to query if a task had failed somehow.
+- |tasks| Add :meth:`Loop.change_interval <uwuowo.Loop.change_interval>` to change the sleep interval at runtime (:issue:`2158`, :issue:`2162`)
 
 Bug Fixes
 ~~~~~~~~~~~
@@ -722,10 +722,10 @@ Miscellaneous
 - Improve performance of attribute access on :class:`Member` about by 2x.
 - Improve performance of :func:`utils.get` by around 4-6x depending on usage.
 - Improve performance of event parsing lookup by around 2.5x.
-- Keyword arguments in :meth:`Client.start` and :meth:`Client.run` are now validated (:issue:`953`, :issue:`2170`)
+- Keyword arguments in :meth:`Bunny.start` and :meth:`Bunny.run` are now validated (:issue:`953`, :issue:`2170`)
 - The Discord error code is now shown in the exception message for :exc:`HTTPException`.
 - Internal tasks launched by the library will now have their own custom ``__repr__``.
-- All public facing types should now have a proper and more detailed ``__repr__``.
+- All public facing chan should now have a proper and more detailed ``__repr__``.
 - |tasks| Errors are now logged via the standard :mod:`py:logging` module.
 
 .. _vp1p1p1:
@@ -741,7 +741,7 @@ Bug Fixes
 Miscellaneous
 ~~~~~~~~~~~~~~
 
-- Add back signal handling to :meth:`Client.run` due to issues some users had with proper cleanup.
+- Add back signal handling to :meth:`Bunny.run` due to issues some users had with proper cleanup.
 
 .. _vp1p1p0:
 
@@ -756,7 +756,7 @@ New Features
 - Add :attr:`Permissions.stream` permission. (:issue:`2077`)
 - Add equality comparison and hash support to :class:`Asset`
 - Add ``compute_prune_members`` parameter to :meth:`Guild.prune_members` (:issue:`2085`)
-- Add :attr:`Client.cached_messages` attribute to fetch the message cache (:issue:`2086`)
+- Add :attr:`Bunny.cached_messages` attribute to fetch the message cache (:issue:`2086`)
 - Add :meth:`abc.GuildChannel.clone` to clone a guild channel. (:issue:`2093`)
 - Add ``delay`` keyword-only argument to :meth:`Message.delete` (:issue:`2094`)
 - Add support for ``<:name:id>`` when adding reactions (:issue:`2095`)
@@ -764,14 +764,14 @@ New Features
 - Add :meth:`Attachment.read` to fetch the bytes content of an attachment (:issue:`2118`)
 - Add support for voice kicking by passing ``None`` to :meth:`Member.move_to`.
 
-``discord.ext.commands``
+``senpaiuwuwaifu``
 ++++++++++++++++++++++++++
 
-- Add new :func:`~.commands.dm_only` check.
-- Support callable converters in :data:`~.commands.Greedy`
-- Add new :class:`~.commands.MessageConverter`.
+- Add new :func:`~waifu.dm_only` check.
+- Support callable converters in :data:`~waifu.Greedy`
+- Add new :class:`~waifu.MessageConverter`.
     - This allows you to use :class:`Message` as a type hint in functions.
-- Allow passing ``cls`` in the :func:`~.commands.group` decorator (:issue:`2061`)
+- Allow passing ``cls`` in the :func:`~waifu.group` decorator (:issue:`2061`)
 - Add :attr:`.Command.parents` to fetch the parents of a command (:issue:`2104`)
 
 
@@ -785,26 +785,26 @@ Bug Fixes
 - Fix bug where updating your own user did not update your member instances.
 - Tighten constraints of ``__eq__`` in :class:`Spotify` objects (:issue:`2113`, :issue:`2117`)
 
-``discord.ext.commands``
+``senpaiuwuwaifu``
 ++++++++++++++++++++++++++
 
 - Fix lambda converters in a non-module context (e.g. ``eval``).
 - Use message creation time for reference time when computing cooldowns.
     - This prevents cooldowns from triggering during e.g. a RESUME session.
 - Fix the default :func:`on_command_error` to work with new-style cogs (:issue:`2094`)
-- DM channels are now recognised as NSFW in :func:`~.commands.is_nsfw` check.
+- DM channels are now recognised as NSFW in :func:`~waifu.is_nsfw` check.
 - Fix race condition with help commands (:issue:`2123`)
-- Fix cog descriptions not showing in :class:`~.commands.MinimalHelpCommand` (:issue:`2139`)
+- Fix cog descriptions not showing in :class:`~waifu.MinimalHelpCommand` (:issue:`2139`)
 
 Miscellaneous
 ~~~~~~~~~~~~~~~
 
 - Improve the performance of internal enum creation in the library by about 5x.
-- Make the output of ``python -m discord --version`` a bit more useful.
+- Make the output of ``python -m senpai --version`` a bit more useful.
 - The loop cleanup facility has been rewritten again.
-- The signal handling in :meth:`Client.run` has been removed.
+- The signal handling in :meth:`Bunny.run` has been removed.
 
-``discord.ext.commands``
+``senpaiuwuwaifu``
 ++++++++++++++++++++++++++
 
 - Custom exception classes are now used for all default checks in the library (:issue:`2101`)
@@ -839,7 +839,7 @@ v0.16.6
 Bug Fixes
 ~~~~~~~~~~
 
-- Fix issue with :meth:`Client.create_server` that made it stop working.
+- Fix issue with :meth:`Bunny.create_server` that made it stop working.
 - Fix main thread being blocked upon calling ``StreamPlayer.stop``.
 - Handle HEARTBEAT_ACK and resume gracefully when it occurs.
 - Fix race condition when pre-emptively rate limiting that caused releasing an already released lock.
@@ -859,7 +859,7 @@ Bug Fixes
 - The CDN URL is now used instead of the API URL for assets.
 - Rate limit implementation now tries to use header information if possible.
 - Event loop is now properly propagated (:issue:`420`)
-- Allow falsey values in :meth:`Client.send_message` and :meth:`Client.send_file`.
+- Allow falsey values in :meth:`Bunny.send_message` and :meth:`Bunny.send_file`.
 
 .. _vp0p16p0:
 
@@ -903,8 +903,8 @@ New Features
 
 - Rich Embeds for messages are now supported.
 
-    - To do so, create your own :class:`Embed` and pass the instance to the ``embed`` keyword argument to :meth:`Client.send_message` or :meth:`Client.edit_message`.
-- Add :meth:`Client.clear_reactions` to remove all reactions from a message.
+    - To do so, create your own :class:`Embed` and pass the instance to the ``embed`` keyword argument to :meth:`Bunny.send_message` or :meth:`Bunny.edit_message`.
+- Add :meth:`Bunny.clear_reactions` to remove all reactions from a message.
 - Add support for MESSAGE_REACTION_REMOVE_ALL event, under :func:`on_reaction_clear`.
 - Add :meth:`Permissions.update` and :meth:`PermissionOverwrite.update` for bulk permission updates.
 
@@ -934,13 +934,13 @@ v0.14.2
 New Features
 ~~~~~~~~~~~~~~
 
-- :meth:`Client.wait_for_reaction` now returns a namedtuple with ``reaction`` and ``user`` attributes.
+- :meth:`Bunny.wait_for_reaction` now returns a namedtuple with ``reaction`` and ``user`` attributes.
     - This is for better support in the case that ``None`` is returned since tuple unpacking can lead to issues.
 
 Bug Fixes
 ~~~~~~~~~~
 
-- Fix bug that disallowed ``None`` to be passed for ``emoji`` parameter in :meth:`Client.wait_for_reaction`.
+- Fix bug that disallowed ``None`` to be passed for ``emoji`` parameter in :meth:`Bunny.wait_for_reaction`.
 
 .. _v0p14p1:
 
@@ -964,15 +964,15 @@ New Features
 ~~~~~~~~~~~~~
 
 - Add support for Manage Webhooks permission under :attr:`Permissions.manage_webhooks`
-- Add support for ``around`` argument in 3.5+ :meth:`Client.logs_from`.
+- Add support for ``around`` argument in 3.5+ :meth:`Bunny.logs_from`.
 - Add support for reactions.
-    - :meth:`Client.add_reaction` to add a reactions
-    - :meth:`Client.remove_reaction` to remove a reaction.
-    - :meth:`Client.get_reaction_users` to get the users that reacted to a message.
+    - :meth:`Bunny.add_reaction` to add a reactions
+    - :meth:`Bunny.remove_reaction` to remove a reaction.
+    - :meth:`Bunny.get_reaction_users` to get the users that reacted to a message.
     - :attr:`Permissions.add_reactions` permission bit support.
     - Two new events, :func:`on_reaction_add` and :func:`on_reaction_remove`.
     - :attr:`Message.reactions` to get reactions from a message.
-    - :meth:`Client.wait_for_reaction` to wait for a reaction from a user.
+    - :meth:`Bunny.wait_for_reaction` to wait for a reaction from a user.
 
 Bug Fixes
 ~~~~~~~~~~
@@ -992,9 +992,9 @@ New Features
 
 - Add the ability to manage emojis.
 
-    - :meth:`Client.create_custom_emoji` to create new emoji.
-    - :meth:`Client.edit_custom_emoji` to edit an old emoji.
-    - :meth:`Client.delete_custom_emoji` to delete a custom emoji.
+    - :meth:`Bunny.create_custom_emoji` to create new emoji.
+    - :meth:`Bunny.edit_custom_emoji` to edit an old emoji.
+    - :meth:`Bunny.delete_custom_emoji` to delete a custom emoji.
 - Add new :attr:`Permissions.manage_emojis` toggle.
 
     - This applies for :class:`PermissionOverwrite` as well.
@@ -1002,11 +1002,11 @@ New Features
 
     - :attr:`Status.dnd` (aliased with :attr:`Status.do_not_disturb`\) for Do Not Disturb.
     - :attr:`Status.invisible` for setting your status to invisible (please see the docs for a caveat).
-- Deprecate :meth:`Client.change_status`
+- Deprecate :meth:`Bunny.change_status`
 
-    - Use :meth:`Client.change_presence` instead for better more up to date functionality.
+    - Use :meth:`Bunny.change_presence` instead for better more up to date functionality.
     - This method is subject for removal in a future API version.
-- Add :meth:`Client.change_presence` for changing your status with the new Discord API change.
+- Add :meth:`Bunny.change_presence` for changing your status with the new Discord API change.
 
     - This is the only method that allows changing your status to invisible or do not disturb.
 
@@ -1029,7 +1029,7 @@ New Features
 - Add custom emoji support.
 
     - Adds a new class to represent a custom Emoji named :class:`Emoji`
-    - Adds a utility generator function, :meth:`Client.get_all_emojis`.
+    - Adds a utility generator function, :meth:`Bunny.get_all_emojis`.
     - Adds a list of emojis on a server, :attr:`Server.emojis`.
     - Adds a new event, :func:`on_server_emojis_update`.
 - Add new server regions to :class:`ServerRegion`
@@ -1042,16 +1042,16 @@ New Features
 
 - Add :attr:`Server.role_hierarchy` to get the server's role hierarchy.
 - Add :attr:`Member.server_permissions` to get a member's server permissions without their channel specific overwrites.
-- Add :meth:`Client.get_user_info` to retrieve a user's info from their ID.
+- Add :meth:`Bunny.get_user_info` to retrieve a user's info from their ID.
 - Add a new ``Player`` property, ``Player.error`` to fetch the error that stopped the player.
 
     - To help with this change, a player's ``after`` function can now take a single parameter denoting the current player.
 - Add support for server verification levels.
 
     - Adds a new enum called :class:`VerificationLevel`.
-    - This enum can be used in :meth:`Client.edit_server` under the ``verification_level`` keyword argument.
+    - This enum can be used in :meth:`Bunny.edit_server` under the ``verification_level`` keyword argument.
     - Adds a new attribute in the server, :attr:`Server.verification_level`.
-- Add :attr:`Server.voice_client` shortcut property for :meth:`Client.voice_client_in`.
+- Add :attr:`Server.voice_bunny` shortcut property for :meth:`Bunny.voice_bunny_in`.
 
     - This is technically old (was added in v0.10.0) but was undocumented until v0.12.0.
 
@@ -1067,7 +1067,7 @@ Bug Fixes
 
 - Fix bug that caused the library to not work with the latest ``websockets`` library.
 - Fix bug that leaked keep alive threads (:issue:`309`)
-- Fix bug that disallowed :class:`ServerRegion` from being used in :meth:`Client.edit_server`.
+- Fix bug that disallowed :class:`ServerRegion` from being used in :meth:`Bunny.edit_server`.
 - Fix bug in :meth:`Channel.permissions_for` that caused permission resolution to happen out of order.
 - Fix bug in :attr:`Member.top_role` that did not account for same-position roles.
 
@@ -1086,17 +1086,17 @@ Breaking Changes
 New Features
 ~~~~~~~~~~~~~
 
-- Add the ability to prune members via :meth:`Client.prune_members`.
+- Add the ability to prune members via :meth:`Bunny.prune_members`.
 - Switch the websocket gateway version to v6 from v5. This allows the library to work with group DMs and 1-on-1 calls.
 - Add :attr:`AppInfo.owner` attribute.
 - Add :class:`CallMessage` for group voice call messages.
 - Add :class:`GroupCall` for group voice call information.
 - Add :attr:`Message.system_content` to get the system message.
 - Add the remaining VIP servers and the Brazil servers into :class:`ServerRegion` enum.
-- Add ``stderr`` argument to :meth:`VoiceClient.create_ffmpeg_player` to redirect stderr.
+- Add ``stderr`` argument to :meth:`VoiceBunny.create_ffmpeg_player` to redirect stderr.
 - The library now handles implicit permission resolution in :meth:`Channel.permissions_for`.
 - Add :attr:`Server.mfa_level` to query a server's 2FA requirement.
-- Add :attr:`Permissions.external_emojis` permission.
+- Add :attr:`Permissionsuwuernal_emojis` permission.
 - Add :attr:`Member.voice` attribute that refers to a :class:`VoiceState`.
 
     - For backwards compatibility, the member object will have properties mirroring the old behaviour.
@@ -1109,7 +1109,7 @@ For the command extension, the following are new:
 Bug Fixes
 ~~~~~~~~~~
 
-- :attr:`Client.email` is now saved when using a token for user accounts.
+- :attr:`Bunny.email` is now saved when using a token for user accounts.
 - Fix issue when removing roles out of order.
 - Fix bug where discriminators would not update.
 - Handle cases where ``HEARTBEAT`` opcode is received. This caused bots to disconnect seemingly randomly.
@@ -1135,30 +1135,30 @@ New Features
 - The library is now fully ``asyncio`` compatible, allowing you to write non-blocking code a lot more easily.
 - The library now fully handles 429s and unconditionally retries on 502s.
 - A new command extension module was added but is currently undocumented. Figuring it out is left as an exercise to the reader.
-- Two new exception types, :exc:`Forbidden` and :exc:`NotFound` to denote permission errors or 404 errors.
-- Added :meth:`Client.delete_invite` to revoke invites.
-- Added support for sending voice. Check :class:`VoiceClient` for more details.
-- Added :meth:`Client.wait_for_message` coroutine to aid with follow up commands.
+- Two new exception chan, :exc:`Forbidden` and :exc:`NotFound` to denote permission errors or 404 errors.
+- Added :meth:`Bunny.delete_invite` to revoke invites.
+- Added support for sending voice. Check :class:`VoiceBunny` for more details.
+- Added :meth:`Bunny.wait_for_message` coroutine to aid with follow up commands.
 - Added :data:`version_info` named tuple to check version info of the library.
 - Login credentials are now cached to have a faster login experience. You can disable this by passing in ``cache_auth=False``
-  when constructing a :class:`Client`.
-- New utility function, :func:`discord.utils.get` to simplify retrieval of items based on attributes.
+  when constructing a :class:`Bunny`.
+- New utility function, :func:`senpai.utils.get` to simplify retrieval of items based on attributes.
 - All data classes now support ``!=``, ``==``, ``hash(obj)`` and ``str(obj)``.
-- Added :meth:`Client.get_bans` to get banned members from a server.
-- Added :meth:`Client.invites_from` to get currently active invites in a server.
-- Added :attr:`Server.me` attribute to get the :class:`Member` version of :attr:`Client.user`.
+- Added :meth:`Bunny.get_bans` to get banned members from a server.
+- Added :meth:`Bunny.invites_from` to get currently active invites in a server.
+- Added :attr:`Server.me` attribute to get the :class:`Member` version of :attr:`Bunny.user`.
 - Most data classes now support a ``hash(obj)`` function to allow you to use them in ``set`` or ``dict`` classes or subclasses.
 - Add :meth:`Message.clean_content` to get a text version of the content with the user and channel mentioned changed into their names.
-- Added a way to remove the messages of the user that just got banned in :meth:`Client.ban`.
-- Added :meth:`Client.wait_until_ready` to facilitate easy creation of tasks that require the client cache to be ready.
-- Added :meth:`Client.wait_until_login` to facilitate easy creation of tasks that require the client to be logged in.
-- Add :class:`discord.Game` to represent any game with custom text to send to :meth:`Client.change_status`.
+- Added a way to remove the messages of the user that just got banned in :meth:`Bunny.ban`.
+- Added :meth:`Bunny.wait_until_ready` to facilitate easy creation of tasks that require the bunny cache to be ready.
+- Added :meth:`Bunny.wait_until_login` to facilitate easy creation of tasks that require the bunny to be logged in.
+- Add :class:`senpai.Game` to represent any game with custom text to send to :meth:`Bunny.change_status`.
 - Add :attr:`Message.nonce` attribute.
 - Add :meth:`Member.permissions_in` as another way of doing :meth:`Channel.permissions_for`.
-- Add :meth:`Client.move_member` to move a member to another voice channel.
-- You can now create a server via :meth:`Client.create_server`.
-- Added :meth:`Client.edit_server` to edit existing servers.
-- Added :meth:`Client.server_voice_state` to server mute or server deafen a member.
+- Add :meth:`Bunny.move_member` to move a member to another voice channel.
+- You can now create a server via :meth:`Bunny.create_server`.
+- Added :meth:`Bunny.edit_server` to edit existing servers.
+- Added :meth:`Bunny.server_voice_state` to server mute or server deafen a member.
 - If you are being rate limited, the library will now handle it for you.
 - Add :func:`on_member_ban` and :func:`on_member_unban` events that trigger when a member is banned/unbanned.
 
@@ -1178,10 +1178,10 @@ Bug Fixes
 - Fix bug where guilds being updated did not edit the items in cache.
 - Fix bug where ``member.roles`` were empty upon joining instead of having the ``@everyone`` role.
 - Fix bug where :meth:`Role.is_everyone` was not being set properly when the role was being edited.
-- :meth:`Client.logs_from` now handles cases where limit > 100 to sidestep the discord API limitation.
+- :meth:`Bunny.logs_from` now handles cases where limit > 100 to sidestep the senpai API limitation.
 - Fix bug where a role being deleted would trigger a ``ValueError``.
 - Fix bug where :meth:`Permissions.kick_members` and :meth:`Permissions.ban_members` were flipped.
-- Mentions are now triggered normally. This was changed due to the way discord handles it internally.
+- Mentions are now triggered normally. This was changed due to the way senpai handles it internally.
 - Fix issue when a :class:`Message` would attempt to upgrade a :attr:`Message.server` when the channel is
   a :class:`Object`.
 - Unavailable servers were not being added into cache, this has been corrected.
