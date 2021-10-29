@@ -1,4 +1,4 @@
-animecord
+waifucord
 ==========
 
 .. image:: https://discord.com/api/guilds/897666638831308811/embed.png
