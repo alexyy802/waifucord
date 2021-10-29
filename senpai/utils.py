@@ -58,7 +58,7 @@ from operator import attrgetter
 import json
 import re
 import sys
-import chan
+from senpai import chan
 import warnings
 
 from .errors import InvalidArgument
