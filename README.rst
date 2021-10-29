@@ -2,7 +2,7 @@ waifucord
 ==========
 
 .. image:: https://discord.com/api/guilds/897666638831308811/embed.png
-   :target: https://discord.gg/r3sSKJJ
+   :target: https://discord.gg/jBtKDBneJg
    :alt: Discord server invite
 .. image:: https://img.shields.io/pypi/v/discord.py.svg
    :target: https://pypi.python.org/pypi/discord.py
